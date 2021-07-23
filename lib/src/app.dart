@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:mobile_app/src/screens/login_screen.dart';
 
 class App extends StatelessWidget {
   // This widget is the root of your application.
@@ -6,9 +8,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
       ),
-      home: App(),
+      home: Login_Screen(),
     );
   }
 }
