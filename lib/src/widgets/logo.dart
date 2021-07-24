@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/constants.dart';
+
 class Logo extends StatelessWidget {
   const Logo({
     Key? key,
@@ -7,7 +9,15 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    MainAxisAlignment mainAxisAlignment;
+    if (deviceWidth < 600) {
+      mainAxisAlignment = MainAxisAlignment.start;
+    } else {
+      mainAxisAlignment = MainAxisAlignment.center;
+    }
     return Row(
+      mainAxisAlignment: mainAxisAlignment,
       children: [
         Padding(
           padding: EdgeInsets.only(right: 10),
@@ -18,9 +28,8 @@ class Logo extends StatelessWidget {
           ),
         ),
         Text("scratch",
-            style: Theme.of(context).textTheme.headline2!.copyWith(
-                color: Color(0xff363837),
-                fontSize: 20,
+            style: Theme.of(context).textTheme.headline6!.copyWith(
+                color: Color(AppConstants.logotextColor),
                 fontWeight: FontWeight.bold)),
       ],
     );
