@@ -22,15 +22,17 @@ class Logo extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 10),
           child: Image.asset(
-            "assets/images/logo.png",
+            AppConstants.imageLogoPath,
             height: 26,
             width: 18,
           ),
         ),
-        Text("scratch",
+        Text(AppConstants.nameApp,
             style: Theme.of(context).textTheme.headline6!.copyWith(
-                color: Color(AppConstants.logotextColor),
-                fontWeight: FontWeight.bold)),
+                color: Color(AppConstants.logoTextColor),
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.4,
+                height: 1)),
       ],
     );
   }

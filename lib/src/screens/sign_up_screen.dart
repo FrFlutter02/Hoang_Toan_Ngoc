@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../responsive/responsiveWidget.dart';
+import '../responsive/responsive_widget.dart';
 import '../widgets/form_sign_up.dart';
 import '../constants/constants.dart';
 import '../widgets/logo.dart';
@@ -8,12 +8,10 @@ import '../widgets/logo.dart';
 class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double deviceWidth = MediaQuery.of(context).size.width;
+    // double deviceWidth = MediaQuery.of(context).size.width;
     double mainLeftPadding = MediaQuery.of(context).size.width * (25 / 375);
     double mainTabletPadding = MediaQuery.of(context).size.width * (172 / 768);
-    // double imageHeight = MediaQuery.of(context).size.height * (526 / 768);
-    // double imageWidth = MediaQuery.of(context).size.width * (420 / 375);
-    if (deviceWidth > 600) {}
+
     return Scaffold(
       body: ResponsiveWidget(
         mobile: Column(
@@ -23,43 +21,53 @@ class SignUpScreen extends StatelessWidget {
               child: ClipRRect(
                 borderRadius:
                     BorderRadius.only(bottomRight: Radius.circular(90.0)),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(
-                        "assets/images/imageSignUp.jpeg",
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          SignUpScreenConstants.imageSignUpPath,
+                        ),
+                        fit: BoxFit.fitWidth,
+                        alignment: FractionalOffset.topLeft,
                       ),
-                      fit: BoxFit.fitWidth,
-                      alignment: FractionalOffset.topLeft,
                     ),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(left: mainLeftPadding),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Spacer(flex: 60),
-                        Logo(),
-                        Spacer(flex: 45),
-                        Text(SignUpScreenConstants.titleTopText,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5!
-                                .copyWith(
-                                    color:
-                                        Color(SignUpScreenConstants.titleColor),
-                                    fontWeight: FontWeight.bold)),
-                        Text(SignUpScreenConstants.titleBottomText,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5!
-                                .copyWith(
-                                    color:
-                                        Color(SignUpScreenConstants.titleColor),
-                                    fontWeight: FontWeight.bold)),
-                        Spacer(flex: 88),
-                      ],
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: mainLeftPadding),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Spacer(flex: 60),
+                          Logo(),
+                          Spacer(flex: 45),
+                          Text(SignUpScreenConstants.titleTopText,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5!
+                                  .copyWith(
+                                      color: Color(
+                                          SignUpScreenConstants.titleColor),
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: AppConstants.fontNunito,
+                                      letterSpacing: 0,
+                                      height: 1.333)),
+                          Text(SignUpScreenConstants.titleBottomText,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5!
+                                  .copyWith(
+                                      color: Color(
+                                          SignUpScreenConstants.titleColor),
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: AppConstants.fontNunito,
+                                      letterSpacing: 0,
+                                      height: 1.333)),
+                          Spacer(flex: 88),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -87,15 +95,14 @@ class SignUpScreen extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 child: Image.asset(
-                  "assets/images/imageSignUp.jpeg",
+                  SignUpScreenConstants.imageSignUpPath,
                   height: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                  left: mainTabletPadding, right: mainTabletPadding),
+              padding: EdgeInsets.symmetric(horizontal: mainTabletPadding),
               child: Column(
                 children: [
                   Expanded(
@@ -113,7 +120,7 @@ class SignUpScreen extends StatelessWidget {
                                     color:
                                         Color(SignUpScreenConstants.titleColor),
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Nunito')),
+                                    fontFamily: AppConstants.fontNunito)),
                         Spacer(flex: 36)
                       ],
                     ),
