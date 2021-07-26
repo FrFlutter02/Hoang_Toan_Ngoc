@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:mobile_app/src/constants/constant.dart';
 import 'package:mobile_app/src/widget/login_body.dart';
 
@@ -9,9 +9,10 @@ class Login_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double maxWidth = MediaQuery.of(context).size.width;
     final double maxHeight = MediaQuery.of(context).size.height;
-    print(maxWidth);
-    if (maxWidth < 750) {
+
+    if (Device.get().isPhone) {
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,16 +79,28 @@ class Login_Screen extends StatelessWidget {
       return Scaffold(
           body: Stack(
         children: [
-          Opacity(
-            opacity: 0.5,
-            child: Container(
-              width: maxWidth,
-              height: maxHeight,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage(backGroundLogin),
-                fit: BoxFit.fill,
-              )),
+          Container(
+            child: Opacity(
+              opacity: 0.6,
+              child: Container(
+                width: maxWidth,
+                height: maxHeight,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage(backGroundLogin),
+                  fit: BoxFit.fill,
+                )),
+              ),
+            ),
+          ),
+          Container(
+            width: maxWidth,
+            height: maxHeight,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.white.withOpacity(0.1), Colors.white]),
             ),
           ),
           Container(
