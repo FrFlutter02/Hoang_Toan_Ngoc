@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:mobile_app/src/widget/login_body.dart';
 import 'package:mobile_app/src/screens/login_screen.dart';
 
 class App extends StatelessWidget {
