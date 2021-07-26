@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 
 import '../constants/constants.dart';
 
@@ -9,9 +10,8 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double deviceWidth = MediaQuery.of(context).size.width;
     MainAxisAlignment mainAxisAlignment;
-    if (deviceWidth < 600) {
+    if (Device.get().isPhone) {
       mainAxisAlignment = MainAxisAlignment.start;
     } else {
       mainAxisAlignment = MainAxisAlignment.center;

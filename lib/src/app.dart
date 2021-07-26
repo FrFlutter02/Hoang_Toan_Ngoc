@@ -10,6 +10,7 @@ class App extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/SignUpScreen': (context) => SignUpScreen(),
+        // '/': (context) => SignUpScreen(),
       },
     );
   }

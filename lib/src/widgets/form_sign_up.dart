@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 
 import '../constants/constants.dart';
 
@@ -22,8 +23,6 @@ class _FormSignUpState extends State<FormSignUp> {
 
   @override
   Widget build(BuildContext context) {
-    double deviceWidth = MediaQuery.of(context).size.width;
-
     double btnSignUpHeight = 0;
     double formPadding = 0;
     int subTitleTopPadding = 0;
@@ -32,7 +31,7 @@ class _FormSignUpState extends State<FormSignUp> {
     int btnAndFooterTitlePadding = 0;
     int footerBottomPadding = 0;
 
-    if (deviceWidth < 600) {
+    if (Device.get().isPhone) {
       formPadding = 25;
       btnSignUpHeight = 50;
       subTitleTopPadding = 20;
@@ -62,14 +61,14 @@ class _FormSignUpState extends State<FormSignUp> {
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
                       color: Color(SignUpScreenConstants.subTitleColor),
                       fontWeight: FontWeight.normal,
-                      fontFamily: AppConstants.fontNunito,
+                      fontFamily: AppConstants.fontApp,
                       letterSpacing: 0)),
               Spacer(flex: subTitleBottomPadding),
               Text(SignUpScreenConstants.fullNameText,
                   style: Theme.of(context).textTheme.subtitle2!.copyWith(
                       color: Color(SignUpScreenConstants.labelColor),
                       fontWeight: FontWeight.normal,
-                      fontFamily: AppConstants.fontNunito,
+                      fontFamily: AppConstants.fontApp,
                       letterSpacing: 0,
                       height: 1.57)),
               TextFormField(
@@ -86,7 +85,7 @@ class _FormSignUpState extends State<FormSignUp> {
                   style: Theme.of(context).textTheme.subtitle2!.copyWith(
                       color: Color(SignUpScreenConstants.labelColor),
                       fontWeight: FontWeight.normal,
-                      fontFamily: AppConstants.fontNunito,
+                      fontFamily: AppConstants.fontApp,
                       letterSpacing: 0,
                       height: 1.57)),
               TextFormField(
@@ -103,7 +102,7 @@ class _FormSignUpState extends State<FormSignUp> {
                   style: Theme.of(context).textTheme.subtitle2!.copyWith(
                       color: Color(SignUpScreenConstants.labelColor),
                       fontWeight: FontWeight.normal,
-                      fontFamily: AppConstants.fontNunito,
+                      fontFamily: AppConstants.fontApp,
                       letterSpacing: 0,
                       height: 1.57)),
               TextFormField(
@@ -112,7 +111,7 @@ class _FormSignUpState extends State<FormSignUp> {
                     contentPadding: EdgeInsets.only(top: 15, bottom: 6),
                   ),
                   validator: (passWordValue) {
-                    if (passWordValue!.length < 5) {
+                    if (passWordValue!.length < 8) {
                       return SignUpScreenConstants.validatePassWordText;
                     }
                   }),
@@ -137,7 +136,7 @@ class _FormSignUpState extends State<FormSignUp> {
                               .subtitle1!
                               .copyWith(
                                   color: Colors.white,
-                                  fontFamily: AppConstants.fontNunito,
+                                  fontFamily: AppConstants.fontApp,
                                   height: 1.3125,
                                   letterSpacing: 0),
                         )),
@@ -152,7 +151,7 @@ class _FormSignUpState extends State<FormSignUp> {
                       style: Theme.of(context).textTheme.subtitle2!.copyWith(
                           color: Color(SignUpScreenConstants.footerTitleColor),
                           fontWeight: FontWeight.normal,
-                          fontFamily: AppConstants.fontNunito),
+                          fontFamily: AppConstants.fontApp),
                     ),
                     Text(
                       SignUpScreenConstants.loginHereText,
@@ -160,7 +159,7 @@ class _FormSignUpState extends State<FormSignUp> {
                           color: Color(AppConstants.primaryColor),
                           fontWeight: FontWeight.normal,
                           height: 1.375,
-                          fontFamily: AppConstants.fontNunito,
+                          fontFamily: AppConstants.fontApp,
                           letterSpacing: 0.32),
                     ),
                   ],

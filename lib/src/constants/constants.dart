@@ -1,7 +1,7 @@
 class AppConstants {
   static const int primaryColor = 0xff30BE76;
   static const int logoTextColor = 0xff363837;
-  static const String fontNunito = 'Nunito-Regular';
+  static const String fontApp = 'Nunito-Regular';
   static const String imageLogoPath = "assets/images/logo.png";
   static const String nameApp = "scratch";
 }
@@ -12,8 +12,7 @@ class SignUpScreenConstants {
   static const int subTitleColor = 0xff606060;
   static const int footerTitleColor = 0xffA8A8A8;
   static const String createAccountText = "Create Account";
-  static const String titleTopText = "Start";
-  static const String titleBottomText = "from Scratch";
+  static const String titleMobileText = "Start \nfrom Scratch";
   static const String titleText = "Start from Scratch";
   static const String passwordText = "Password";
   static const String emailText = "Email";
@@ -25,9 +24,9 @@ class SignUpScreenConstants {
   static const String alreadyHaveAnAccountText = "Already have an account?";
   static const String validateNameText =
       "Enter valid name of more then 3 characters!";
-  static const String validateEmailText = "Check your email";
+  static const String validateEmailText = "Enter valid email";
   static const String validatePassWordText =
-      "Enter valid password of more then 5 characters!";
+      "Enter valid password of more then 8 characters!";
   static const String imageSignUpPath = "assets/images/imageSignUp.jpeg";
   static const String emailValidatorCode =
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
