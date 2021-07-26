@@ -51,10 +51,8 @@ flutter:
   assets:
     - lib/src/assets/images/
 
-  # fonts:
-  #   - family: Nunito
-  #     fonts:
-  #       -asset: lib/src/assets/fonts/Nunito-Regular.ttf
+ 
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -78,6 +76,19 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
+  fonts:
+    - family: Nunito-Regular
+      fonts:
+        - asset: lib/src/assets/fonts/Nunito-Regular.ttf       
+    - family: Nunito-Bold
+      fonts:
+        - asset: lib/src/assets/fonts/Nunito-Bold.ttf 
+    - family: Nunito-SemiBold
+      fonts:
+        - asset: lib/src/assets/fonts/Nunito-SemiBold.ttf
+        
+          
+
+  # #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
