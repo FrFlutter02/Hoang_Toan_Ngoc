@@ -1,4 +1,4 @@
-class AppOnboardingPage {
+class AppOnBoardingScreen {
   static const int iconTextColor = 0xff363837;
   static const int tutorialShareRecipesTextColor = 0xff030F09;
   static const int tutorialJoinScratchTextColor = 0xffA8A8A8;
@@ -8,13 +8,19 @@ class AppOnboardingPage {
   static const int learnMoreButtonTextColor = 0xFF30BE76;
 }
 
-class AppForgotPasswordPage {
+class AppLoginScreen {}
+
+class AppForgotPasswordScreen {
   static const int iconTextColor = 0xFF363837;
   static const int emailTextColor = 0xFFA8A8A8;
   static const int lineInputBorderColor = 0xffCCCCCC;
   static const int buttonColor = 0xff30BE76;
   static const int emailAddressColor = 0xFF030F09;
+  static const int resetPasswordColor = 0xFF030F09;
+  static const int tutorialTextColor = 0xFF000000;
 }
+
+class AppSignUpScreen {}
 
 class AppConstants {
   static const String textIcon = 'scratch';
@@ -31,8 +37,17 @@ class AppConstants {
   static const String learnMoreButton = 'Learn More';
 }
 
-class AppImage {
+class AppImages {
   static const String backGroundImage =
-      'lib/src/assets/images/backgroundonboarding.png';
-  static const String logoIcon = 'lib/src/assets/images/logoicon.png';
+      'assets/images/backgroundonboarding.png';
+}
+
+class AppIcons {
+  static const String logoIcon = 'assets/icons/logoicon.png';
+}
+
+class AppFonts {
+  static const String fontAppRegular = "Nunito-Regular";
+  static const String fontAppBold = "Nunito-Bold";
+  static const String fontAppSemiBold = "Nunito-SemiBold";
 }

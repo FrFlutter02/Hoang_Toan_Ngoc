@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
 
-class ForgotPasswordPage extends StatefulWidget {
-  const ForgotPasswordPage({Key? key}) : super(key: key);
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
+  _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
 }
 
-class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     double heightScreen = MediaQuery.of(context).size.height;
@@ -20,10 +20,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     double iconHeight = heightScreen * 0.26 / 8.12;
     double iconAndTextSpacing = widthScreen * 0.1 / 3.75;
     double resetPasswordTextSpacing = heightScreen * 0.5 / 8.12;
-    double tuttorialSpacing = heightScreen * 0.2 / 8.12;
-    double emailTextSpacing = heightScreen * 1 / 8.12;
-    double enterEmailFieldSpacing = heightScreen * 0.15 / 8.12;
-    double buttonSpacing = heightScreen * 0.55 / 8.12;
+    double tuttorialSpacing = heightScreen * 0.24 / 8.12;
+    double emailTextSpacing = heightScreen * 1.06 / 8.12;
+    double enterEmailFieldSpacing = heightScreen * 0.2 / 8.12;
+    double buttonSpacing = heightScreen * 0.53 / 8.12;
     double heightButton = heightScreen * 0.5 / 8.12;
 
     return Scaffold(
@@ -37,35 +37,46 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               Row(
                 children: [
                   Image(
-                      image: AssetImage(AppImage.logoIcon),
+                      image: AssetImage(AppIcons.logoIcon),
                       width: iconWidth,
                       height: iconHeight),
                   SizedBox(width: iconAndTextSpacing),
                   Text(AppConstants.textIcon,
                       style: Theme.of(context).textTheme.headline6?.copyWith(
-                          fontFamily: "Nunito-Bold",
-                          color: Color(AppForgotPasswordPage.iconTextColor),
+                          fontFamily: AppFonts.fontAppBold,
+                          height: 1,
+                          color: Color(AppForgotPasswordScreen.iconTextColor),
                           letterSpacing: 0.4)),
                 ],
               ),
               SizedBox(height: resetPasswordTextSpacing),
               Text(AppConstants.resetPasswordText,
                   style: Theme.of(context).textTheme.headline4?.copyWith(
-                      fontFamily: "Nunito-Bold", color: Colors.black)),
+                      fontSize: 32,
+                      letterSpacing: 0.5,
+                      height: 1.1,
+                      fontFamily: AppFonts.fontAppBold,
+                      color:
+                          Color(AppForgotPasswordScreen.resetPasswordColor))),
               SizedBox(height: tuttorialSpacing),
               Text(AppConstants.tutorialText,
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                        fontFamily: "Nunito-Regular",
-                        color: Colors.black,
+                        fontFamily: AppFonts.fontAppRegular,
+                        fontSize: 15,
+                        letterSpacing: 0.5,
+                        height: 1.1,
+                        color: Color(AppForgotPasswordScreen.tutorialTextColor),
                       )),
               SizedBox(height: emailTextSpacing),
               Text(
                 AppConstants.emailtext,
                 style: Theme.of(context).textTheme.subtitle2?.copyWith(
                     color: Color(
-                      AppForgotPasswordPage.emailTextColor,
+                      AppForgotPasswordScreen.emailTextColor,
                     ),
-                    fontFamily: "Nunito-Bold"),
+                    fontFamily: AppFonts.fontAppRegular,
+                    letterSpacing: 0,
+                    height: 1.1),
               ),
               SizedBox(height: enterEmailFieldSpacing),
               TextField(
@@ -76,11 +87,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                           color: Color(
-                              AppForgotPasswordPage.lineInputBorderColor))),
+                              AppForgotPasswordScreen.lineInputBorderColor))),
                 ),
                 style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                    color: Color(AppForgotPasswordPage.emailAddressColor),
-                    fontFamily: "Nunito-Regular"),
+                    color: Color(AppForgotPasswordScreen.emailAddressColor),
+                    letterSpacing: 0,
+                    height: 1.1,
+                    fontFamily: AppFonts.fontAppRegular),
               ),
               SizedBox(
                 height: buttonSpacing,
@@ -89,7 +102,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 width: widthScreen,
                 height: heightButton,
                 decoration: BoxDecoration(
-                  color: Color(AppForgotPasswordPage.buttonColor),
+                  color: Color(AppForgotPasswordScreen.buttonColor),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: TextButton(
@@ -100,7 +113,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     child: Text(
                       AppConstants.nameButton,
                       style: Theme.of(context).textTheme.headline5?.copyWith(
-                          color: Colors.white, fontFamily: "Nunito-Bold"),
+                          color: Colors.white,
+                          fontFamily: AppFonts.fontAppRegular,
+                          height: 1.1,
+                          letterSpacing: 0),
                     ),
                   ),
                 ),
