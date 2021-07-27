@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
-import 'package:mobile_app/src/constants/constant.dart';
-import 'package:mobile_app/src/widget/login_body.dart';
+
+import '../constants/constants.dart';
+import '../widgets/login_body.dart';
 
 class Login_Screen extends StatelessWidget {
   // This widget is the root of your application.
@@ -24,7 +25,7 @@ class Login_Screen extends StatelessWidget {
                     height: maxHeight * 0.35,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                      image: AssetImage(loginImage),
+                      image: AssetImage(AppLoginScreen.loginImage),
                       fit: BoxFit.fill,
                     )),
                   ),
@@ -42,7 +43,8 @@ class Login_Screen extends StatelessWidget {
                                 height: 26,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: AssetImage(logo))),
+                                        image:
+                                            AssetImage(AppLoginScreen.logo))),
                               ),
                               Padding(padding: EdgeInsets.only(left: 10)),
                               Container(
@@ -50,7 +52,8 @@ class Login_Screen extends StatelessWidget {
                                 height: 20,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: AssetImage(textLogo))),
+                                        image: AssetImage(
+                                            AppLoginScreen.textLogo))),
                               ),
                             ],
                           ),
@@ -87,7 +90,7 @@ class Login_Screen extends StatelessWidget {
                 height: maxHeight,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                  image: AssetImage(backGroundLogin),
+                  image: AssetImage(AppLoginScreen.backGroundLogin),
                   fit: BoxFit.fill,
                 )),
               ),
@@ -117,15 +120,16 @@ class Login_Screen extends StatelessWidget {
                         width: 18,
                         height: 26,
                         decoration: BoxDecoration(
-                            image: DecorationImage(image: AssetImage(logo))),
+                            image: DecorationImage(
+                                image: AssetImage(AppLoginScreen.logo))),
                       ),
                       Padding(padding: EdgeInsets.only(left: 10)),
                       Container(
                         width: 70,
                         height: 20,
                         decoration: BoxDecoration(
-                            image:
-                                DecorationImage(image: AssetImage(textLogo))),
+                            image: DecorationImage(
+                                image: AssetImage(AppLoginScreen.textLogo))),
                       ),
                     ],
                   ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:mobile_app/src/constants/constant.dart';
+import '../constants/constants.dart';
 
 class Login_Body extends StatelessWidget {
   // This widget is the root of your application.
@@ -20,11 +19,9 @@ class Login_Body extends StatelessWidget {
             width: Width * 0.53,
             padding: EdgeInsets.symmetric(horizontal: 0.0667 * Width),
             child: Text(
-              "Please login to continue",
+              AppLoginScreen.emailRemind,
               style: TextStyle(
-                  fontSize: 14,
-                  fontFamily: "Nunito",
-                  color: HexColor("#606060")),
+                  fontSize: 14, fontFamily: "Nunito", color: Color(0xff606060)),
             ),
           ),
           Padding(padding: EdgeInsets.only(top: Height * 0.046)),
@@ -35,7 +32,7 @@ class Login_Body extends StatelessWidget {
               children: [
                 Container(
                   child: Text(
-                    "Email address",
+                    AppLoginScreen.emailHint,
                     style: TextStyle(
                         fontFamily: "Nunito",
                         fontSize: 14,
@@ -63,7 +60,7 @@ class Login_Body extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Password",
+                            AppLoginScreen.passwordHint,
                             style: TextStyle(
                                 fontFamily: "Nunito",
                                 fontSize: 14,
@@ -73,7 +70,7 @@ class Login_Body extends StatelessWidget {
                               onPressed: () {},
                               child: Container(
                                 child: Text(
-                                  "Forgot password?",
+                                  AppLoginScreen.forgotPassword,
                                   style: TextStyle(
                                       fontFamily: "Nunito",
                                       fontSize: 14,
@@ -108,7 +105,7 @@ class Login_Body extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(8)))),
                   Container(
                       alignment: Alignment.center,
-                      child: Text("Login",
+                      child: Text(AppLoginScreen.loginButton,
                           style: TextStyle(
                               fontFamily: "Nunito",
                               fontSize: 16,
@@ -126,7 +123,7 @@ class Login_Body extends StatelessWidget {
                 children: [
                   Container(
                     child: Text(
-                      "New to Scratch?",
+                      AppLoginScreen.newScracth,
                       style: TextStyle(
                         color: Color(0xffA8A8A8),
                         fontFamily: "Nunito",
@@ -138,7 +135,7 @@ class Login_Body extends StatelessWidget {
                     child: TextButton(
                       onPressed: () {},
                       child: Text(
-                        "Create Account Here",
+                        AppLoginScreen.createAccount,
                         style: TextStyle(
                             fontFamily: "Nunito",
                             fontSize: 16,

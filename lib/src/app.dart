@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:mobile_app/src/widget/login_body.dart';
-import 'package:mobile_app/src/screens/login_screen.dart';
+
+import 'screens/onboarding_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/forgot_password_screen.dart';
+import 'screens/signup_screen.dart';
 
 class App extends StatelessWidget {
-  // This widget is the root of your application.
+  const App({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: Login_Screen(),
+      initialRoute: "/LoginScreen",
+      routes: {
+        '/': (context) => Onboarding_Screen(),
+        '/LoginScreen': (context) => Login_Screen(),
+        '/ForgotPasswordScreen': (context) => ForgotPasswordScreen(),
+        '/SignUpScreen': (context) => SignUpScreen(),
+      },
     );
   }
 }
