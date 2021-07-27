@@ -57,18 +57,16 @@ class _FormSignUpState extends State<FormSignUp> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Spacer(flex: subTitleTopPadding),
-              Text(SignUpScreenConstants.createAccountToContinueText,
+              Text(AppConstants.createAccountToContinueText,
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      color: Color(SignUpScreenConstants.subTitleColor),
-                      fontWeight: FontWeight.normal,
-                      fontFamily: AppConstants.fontApp,
+                      color: Color(AppSignUpScreen.subTitleColor),
+                      fontFamily: AppFonts.fontAppRegular,
                       letterSpacing: 0)),
               Spacer(flex: subTitleBottomPadding),
-              Text(SignUpScreenConstants.fullNameText,
+              Text(AppConstants.fullNameText,
                   style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                      color: Color(SignUpScreenConstants.labelColor),
-                      fontWeight: FontWeight.normal,
-                      fontFamily: AppConstants.fontApp,
+                      color: Color(AppSignUpScreen.labelColor),
+                      fontFamily: AppFonts.fontAppRegular,
                       letterSpacing: 0,
                       height: 1.57)),
               TextFormField(
@@ -77,15 +75,14 @@ class _FormSignUpState extends State<FormSignUp> {
                   ),
                   validator: (nameValue) {
                     if (nameValue!.length < 3) {
-                      return SignUpScreenConstants.validateNameText;
+                      return AppConstants.validateNameText;
                     }
                   }),
               Spacer(flex: textFieldTopPadding),
-              Text(SignUpScreenConstants.emailText,
+              Text(AppConstants.emailText,
                   style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                      color: Color(SignUpScreenConstants.labelColor),
-                      fontWeight: FontWeight.normal,
-                      fontFamily: AppConstants.fontApp,
+                      color: Color(AppSignUpScreen.labelColor),
+                      fontFamily: AppFonts.fontAppRegular,
                       letterSpacing: 0,
                       height: 1.57)),
               TextFormField(
@@ -95,14 +92,13 @@ class _FormSignUpState extends State<FormSignUp> {
                   validator: (emailValue) {
                     return emailValue!.isValidEmail()
                         ? null
-                        : SignUpScreenConstants.validateEmailText;
+                        : AppConstants.validateEmailText;
                   }),
               Spacer(flex: textFieldTopPadding),
-              Text(SignUpScreenConstants.passwordText,
+              Text(AppConstants.passwordText,
                   style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                      color: Color(SignUpScreenConstants.labelColor),
-                      fontWeight: FontWeight.normal,
-                      fontFamily: AppConstants.fontApp,
+                      color: Color(AppSignUpScreen.labelColor),
+                      fontFamily: AppFonts.fontAppRegular,
                       letterSpacing: 0,
                       height: 1.57)),
               TextFormField(
@@ -112,7 +108,7 @@ class _FormSignUpState extends State<FormSignUp> {
                   ),
                   validator: (passWordValue) {
                     if (passWordValue!.length < 8) {
-                      return SignUpScreenConstants.validatePassWordText;
+                      return AppConstants.validatePassWordText;
                     }
                   }),
               Spacer(flex: textFieldTopPadding),
@@ -121,7 +117,7 @@ class _FormSignUpState extends State<FormSignUp> {
                   height: btnSignUpHeight,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: Color(AppConstants.primaryColor),
+                      color: Color(AppSignUpScreen.primaryColor),
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
                     child: TextButton(
@@ -130,13 +126,13 @@ class _FormSignUpState extends State<FormSignUp> {
                           FocusScope.of(context).requestFocus(FocusNode());
                         },
                         child: Text(
-                          SignUpScreenConstants.createAccountText,
+                          AppConstants.createAccountText,
                           style: Theme.of(context)
                               .textTheme
                               .subtitle1!
                               .copyWith(
                                   color: Colors.white,
-                                  fontFamily: AppConstants.fontApp,
+                                  fontFamily: AppFonts.fontAppRegular,
                                   height: 1.3125,
                                   letterSpacing: 0),
                         )),
@@ -147,19 +143,17 @@ class _FormSignUpState extends State<FormSignUp> {
                 child: Column(
                   children: [
                     Text(
-                      SignUpScreenConstants.alreadyHaveAnAccountText,
+                      AppConstants.alreadyHaveAnAccountText,
                       style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                          color: Color(SignUpScreenConstants.footerTitleColor),
-                          fontWeight: FontWeight.normal,
-                          fontFamily: AppConstants.fontApp),
+                          color: Color(AppSignUpScreen.footerTitleColor),
+                          fontFamily: AppFonts.fontAppRegular),
                     ),
                     Text(
-                      SignUpScreenConstants.loginHereText,
+                      AppConstants.loginHereText,
                       style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                          color: Color(AppConstants.primaryColor),
-                          fontWeight: FontWeight.normal,
+                          color: Color(AppSignUpScreen.primaryColor),
                           height: 1.375,
-                          fontFamily: AppConstants.fontApp,
+                          fontFamily: AppFonts.fontAppRegular,
                           letterSpacing: 0.32),
                     ),
                   ],
@@ -176,6 +170,6 @@ class _FormSignUpState extends State<FormSignUp> {
 
 extension EmailValidator on String {
   bool isValidEmail() {
-    return RegExp(SignUpScreenConstants.emailValidatorCode).hasMatch(this);
+    return RegExp(AppConstants.emailValidatorCode).hasMatch(this);
   }
 }

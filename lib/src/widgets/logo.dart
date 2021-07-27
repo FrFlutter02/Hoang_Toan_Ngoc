@@ -22,14 +22,14 @@ class Logo extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 10),
           child: Image.asset(
-            AppConstants.imageLogoPath,
+            AppImages.imageLogoPath,
             height: 26,
             width: 18,
           ),
         ),
         Text(AppConstants.nameApp,
             style: Theme.of(context).textTheme.headline6!.copyWith(
-                color: Color(AppConstants.logoTextColor),
+                color: Color(AppSignUpScreen.logoTextColor),
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.4,
                 height: 1)),
