@@ -1,13 +1,19 @@
-class AppOnBoardingPage {}
+class AppOnBoardingScreen {}
 
-class AppLoginPage {}
+class AppLoginScreen {}
 
-class AppForgotPasswordPage {}
+class AppForgotPasswordScreen {}
 
-class AppSignUpPage {}
+class AppSignUpScreen {}
 
 class AppConstants {}
 
 class AppImages {}
 
-class AppIcon {}
+class AppIcons {}
+
+class AppFonts {
+  static const String fontAppRegular = "Nunito-Regular";
+  static const String fontAppBold = "Nunito-Bold";
+  static const String fontAppSemiBold = "Nunito-SemiBold";
+}

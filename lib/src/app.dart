@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../src/screens/onboarding_page.dart';
-import '../src/screens/login_page.dart';
-import '../src/screens/forgot_password_page.dart';
-import '../src/screens/signup_page.dart';
+import 'screens/onboarding_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/forgot_password_screen.dart';
+import 'screens/signup_screen.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -12,10 +12,10 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => OnboardingPage(),
-        '/LoginPage': (context) => LoginPage(),
-        '/ForgotPasswordPage': (context) => ForgotPasswordPage(),
-        '/SignUpPage': (context) => SignUpPage(),
+        '/': (context) => OnboardingScreen(),
+        '/LoginScreen': (context) => LoginScreen(),
+        '/ForgotPasswordScreen': (context) => ForgotPasswordScreen(),
+        '/SignUpScreen': (context) => SignUpScreen(),
       },
     );
   }
