@@ -10,7 +10,7 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double titleLeftPadding = MediaQuery.of(context).size.width * (25 / 375);
     double mainTabletPadding = 0;
-    CrossAxisAlignment crossAxisAlignmentTitle;
+    CrossAxisAlignment crossAxisAlignmentTitle = CrossAxisAlignment.start;
     int logoTopPadding = 0;
     int titleTopPadding = 0;
     int titleBottomPadding = 0;

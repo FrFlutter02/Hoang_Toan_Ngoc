@@ -10,7 +10,7 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MainAxisAlignment mainAxisAlignment;
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start;
     if (Device.get().isPhone) {
       mainAxisAlignment = MainAxisAlignment.start;
     } else {
