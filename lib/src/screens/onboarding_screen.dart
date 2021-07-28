@@ -84,7 +84,7 @@ class OnboardingScreen extends StatelessWidget {
                     width: widthScreen,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(AppImages.backGroundImage),
+                        image: AssetImage(AppImages.backGroundOnboardingImage),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -197,7 +197,10 @@ class OnboardingScreen extends StatelessWidget {
                                   AppOnBoardingScreen.joinScratchButtonCollor),
                               borderRadius: BorderRadius.circular(8)),
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed('/ForgotPasswordScreen');
+                            },
                             child: Text(
                               AppConstants.joinScratchButton,
                               style: Theme.of(context)

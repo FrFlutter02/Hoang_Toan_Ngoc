@@ -18,6 +18,7 @@ class AppForgotPasswordScreen {
   static const int emailAddressColor = 0xFF030F09;
   static const int resetPasswordColor = 0xFF030F09;
   static const int tutorialTextColor = 0xFF000000;
+  static const int startFromScratchTextColor = 0xFF030F09;
 }
 
 class AppSignUpScreen {}
@@ -35,15 +36,17 @@ class AppConstants {
       'Never run out of ideas again. Try new foods, ingredients, cooking style, and more';
   static const String joinScratchButton = 'Join Scratch';
   static const String learnMoreButton = 'Learn More';
+  static const String startFromScratchText = 'Start from Scratch';
 }
 
 class AppImages {
-  static const String backGroundImage =
+  static const String backGroundOnboardingImage =
       'assets/images/backgroundonboarding.png';
+  static const String backGroundImage = 'assets/images/backgroundImage.png';
 }
 
 class AppIcons {
-  static const String logoIcon = 'assets/icons/logoicon.png';
+  static const String logoIcon = 'assets/icons/logo_icon.png';
 }
 
 class AppFonts {
