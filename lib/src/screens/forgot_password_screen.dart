@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 
 import '../constants/constants.dart';
+import '../repositories/user_repository.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -11,13 +12,15 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  final emailController = TextEditingController();
+  final UserRepository userRepository = UserRepository();
+
   @override
   Widget build(BuildContext context) {
     double heightScreen = MediaQuery.of(context).size.height;
     double widthScreen = MediaQuery.of(context).size.width;
     CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start;
     MainAxisAlignment mainAxisAlignment = MainAxisAlignment.center;
-
     double contextPadding = 0;
     double iconAndTopSpacing = 0;
     double iconWidth = 0;
@@ -84,190 +87,183 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     }
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            if (Device.get().isTablet)
-              (ShaderMask(
-                shaderCallback: (bounds) => LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.white.withOpacity(0.5),
-                      Colors.white.withOpacity(0.3),
-                      Colors.white.withOpacity(0),
-                    ]).createShader(bounds),
-                child: Container(
-                  width: widthScreen,
-                  height: heightScreen,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(AppImages.backGroundImage),
-                          fit: BoxFit.cover)),
+        body: SingleChildScrollView(
+      child: Stack(
+        children: [
+          if (Device.get().isTablet)
+            (ShaderMask(
+              shaderCallback: (bounds) => LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.white.withOpacity(0.5),
+                    Colors.white.withOpacity(0.3),
+                    Colors.white.withOpacity(0),
+                  ]).createShader(bounds),
+              child: Container(
+                width: widthScreen,
+                height: heightScreen,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(AppImages.backGroundImage),
+                        fit: BoxFit.cover)),
+              ),
+            ))
+          else if (Device.get().isPhone)
+            (ShaderMask(
+              shaderCallback: (bounds) => LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.white,
+                    Colors.white,
+                  ]).createShader(bounds),
+              child: Container(
+                width: widthScreen,
+                height: heightScreen,
+                decoration: BoxDecoration(color: Colors.white),
+              ),
+            )),
+          Column(
+            crossAxisAlignment: crossAxisAlignment,
+            children: [
+              SizedBox(height: iconAndTopSpacing),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: contextPadding),
+                child: Row(
+                  mainAxisAlignment: mainAxisAlignment,
+                  children: [
+                    Image(
+                        image: AssetImage(AppIcons.logoIcon),
+                        width: iconWidth,
+                        height: iconHeight),
+                    SizedBox(width: iconAndTextSpacing),
+                    Text(AppConstants.textIcon,
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                            fontFamily: AppFonts.fontAppBold,
+                            height: 1,
+                            color: Color(AppForgotPasswordScreen.iconTextColor),
+                            letterSpacing: 0.4)),
+                  ],
                 ),
-              ))
-            else if (Device.get().isPhone)
-              (ShaderMask(
-                shaderCallback: (bounds) => LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.white,
-                      Colors.white,
-                    ]).createShader(bounds),
-                child: Container(
-                  width: widthScreen,
-                  height: heightScreen,
-                  decoration: BoxDecoration(color: Colors.white),
-                ),
-              )),
-            Column(
-              crossAxisAlignment: crossAxisAlignment,
-              children: [
-                SizedBox(height: iconAndTopSpacing),
-                Padding(
+              ),
+              SizedBox(height: startTextAndIconSpacing),
+              if (Device.get().isTablet)
+                (Text(
+                  AppConstants.startFromScratchText,
+                  style: Theme.of(context).textTheme.headline5?.copyWith(
+                      fontFamily: AppFonts.fontAppRegular,
+                      height: 1.1,
+                      letterSpacing: 0,
+                      color: Color(
+                          AppForgotPasswordScreen.startFromScratchTextColor)),
+                )),
+              SizedBox(height: containerSpacing),
+              Container(
+                width: containerWidth,
+                height: containerHeight,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8)),
+                child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: contextPadding),
-                  child: Row(
-                    mainAxisAlignment: mainAxisAlignment,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image(
-                          image: AssetImage(AppIcons.logoIcon),
-                          width: iconWidth,
-                          height: iconHeight),
-                      SizedBox(width: iconAndTextSpacing),
-                      Text(AppConstants.textIcon,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6
-                              ?.copyWith(
-                                  fontFamily: AppFonts.fontAppBold,
-                                  height: 1,
-                                  color: Color(
-                                      AppForgotPasswordScreen.iconTextColor),
-                                  letterSpacing: 0.4)),
-                    ],
-                  ),
-                ),
-                SizedBox(height: startTextAndIconSpacing),
-                if (Device.get().isTablet)
-                  (Text(
-                    AppConstants.startFromScratchText,
-                    style: Theme.of(context).textTheme.headline5?.copyWith(
-                        fontFamily: AppFonts.fontAppRegular,
-                        height: 1.1,
-                        letterSpacing: 0,
-                        color: Color(
-                            AppForgotPasswordScreen.startFromScratchTextColor)),
-                  )),
-                SizedBox(height: containerSpacing),
-                Container(
-                  width: containerWidth,
-                  height: containerHeight,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: contextPadding),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: topContainerSpacing),
-                        Text(
-                          AppConstants.resetPasswordText,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline3
-                              ?.copyWith(
-                                  fontFamily: AppFonts.fontAppBold,
-                                  fontSize: resetPasswordFontSize,
-                                  letterSpacing: resetPasswordTextLetterSpacing,
-                                  height: 1.1,
-                                  color: Color(AppForgotPasswordScreen
-                                      .resetPasswordColor)),
-                        ),
-                        SizedBox(height: tuttorialSpacing),
-                        Text(AppConstants.tutorialText,
-                            style:
-                                Theme.of(context).textTheme.subtitle1?.copyWith(
-                                      fontFamily: AppFonts.fontAppRegular,
-                                      fontSize: tutorialFontSize,
-                                      letterSpacing: tutorialLetterSpacing,
-                                      height: 1.1,
-                                      color: Color(AppForgotPasswordScreen
-                                          .tutorialTextColor),
-                                    )),
-                        SizedBox(height: emailTextSpacing),
-                        Text(
-                          AppConstants.emailtext,
-                          style:
-                              Theme.of(context).textTheme.subtitle2?.copyWith(
-                                  color: Color(
-                                    AppForgotPasswordScreen.emailTextColor,
-                                  ),
-                                  fontFamily: AppFonts.fontAppRegular,
-                                  letterSpacing: 0,
-                                  height: 1.1),
-                        ),
-                        SizedBox(height: enterEmailFieldSpacing),
-                        TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          cursorColor: Colors.black,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color(AppForgotPasswordScreen
-                                        .lineInputBorderColor))),
-                          ),
+                      SizedBox(height: topContainerSpacing),
+                      Text(
+                        AppConstants.resetPasswordText,
+                        style: Theme.of(context).textTheme.headline3?.copyWith(
+                            fontFamily: AppFonts.fontAppBold,
+                            fontSize: resetPasswordFontSize,
+                            letterSpacing: resetPasswordTextLetterSpacing,
+                            height: 1.1,
+                            color: Color(
+                                AppForgotPasswordScreen.resetPasswordColor)),
+                      ),
+                      SizedBox(height: tuttorialSpacing),
+                      Text(AppConstants.tutorialText,
                           style: Theme.of(context)
                               .textTheme
                               .subtitle1
                               ?.copyWith(
+                                fontFamily: AppFonts.fontAppRegular,
+                                fontSize: tutorialFontSize,
+                                letterSpacing: tutorialLetterSpacing,
+                                height: 1.1,
+                                color: Color(
+                                    AppForgotPasswordScreen.tutorialTextColor),
+                              )),
+                      SizedBox(height: emailTextSpacing),
+                      Text(
+                        AppConstants.emailtext,
+                        style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                            color: Color(
+                              AppForgotPasswordScreen.emailTextColor,
+                            ),
+                            fontFamily: AppFonts.fontAppRegular,
+                            letterSpacing: 0,
+                            height: 1.1),
+                      ),
+                      SizedBox(height: enterEmailFieldSpacing),
+                      TextFormField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
                                   color: Color(AppForgotPasswordScreen
-                                      .emailAddressColor),
-                                  letterSpacing: 0,
-                                  height: 1.1,
-                                  fontFamily: AppFonts.fontAppRegular),
+                                      .lineInputBorderColor))),
                         ),
-                        SizedBox(
-                          height: buttonSpacing,
+                        style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                            color: Color(
+                                AppForgotPasswordScreen.emailAddressColor),
+                            letterSpacing: 0,
+                            height: 1.1,
+                            fontFamily: AppFonts.fontAppRegular),
+                      ),
+                      SizedBox(
+                        height: buttonSpacing,
+                      ),
+                      Container(
+                        width: widthScreen,
+                        height: heightButton,
+                        decoration: BoxDecoration(
+                          color: Color(AppForgotPasswordScreen.buttonColor),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        Container(
-                          width: widthScreen,
-                          height: heightButton,
-                          decoration: BoxDecoration(
-                            color: Color(AppForgotPasswordScreen.buttonColor),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Center(
-                              child: Text(
-                                AppConstants.nameButton,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline5
-                                    ?.copyWith(
-                                        fontSize: buttonFontSize,
-                                        color: Colors.white,
-                                        fontFamily: AppFonts.fontAppRegular,
-                                        height: 1.1,
-                                        letterSpacing: 0),
-                              ),
+                        child: TextButton(
+                          onPressed: () {
+                            userRepository
+                                .sendPasswordResetMail(emailController.text);
+                            Navigator.of(context).pop();
+                          },
+                          child: Center(
+                            child: Text(
+                              AppConstants.nameButton,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5
+                                  ?.copyWith(
+                                      fontSize: buttonFontSize,
+                                      color: Colors.white,
+                                      fontFamily: AppFonts.fontAppRegular,
+                                      height: 1.1,
+                                      letterSpacing: 0),
                             ),
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
-          ],
-        ),
+                ),
+              )
+            ],
+          ),
+        ],
       ),
-    );
+    ));
   }
 }

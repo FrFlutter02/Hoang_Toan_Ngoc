@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'screens/onboarding_screen.dart';
 import 'screens/login_screen.dart';
@@ -10,6 +11,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
+    Firebase.initializeApp();
+
     return MaterialApp(
       routes: {
         '/': (context) => OnboardingScreen(),
