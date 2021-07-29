@@ -1,11 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../repositories/user_repository.dart';
 import '../constants/constants.dart';
 
 class Login_Body extends StatelessWidget {
   // This widget is the root of your application.
   final double Width;
   final double Height;
+
   Login_Body({required this.Width, required this.Height});
+  final emailController = TextEditingController();
+  final passWordController = TextEditingController();
+  final UserRepository _userRepository = UserRepository();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,6 +48,7 @@ class Login_Body extends StatelessWidget {
                 Container(
                   child: TextFormField(
                     decoration: InputDecoration(),
+                    controller: emailController,
                   ),
                 ),
               ],
@@ -84,6 +91,7 @@ class Login_Body extends StatelessWidget {
                         child: TextFormField(
                           obscureText: true,
                           decoration: InputDecoration(),
+                          controller: passWordController,
                         ),
                       ),
                     ]),
@@ -96,7 +104,15 @@ class Login_Body extends StatelessWidget {
             height: (70),
             padding: EdgeInsets.symmetric(horizontal: 0.05 * Width),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () async {
+                String result = await _userRepository.signInWithCredentials(
+                    emailController.text, passWordController.text);
+                if (result == "signed in") {
+                  User user = await _userRepository.getUser();
+                  print(user.email);
+                  // Navigator.of(context).pushNamed("/Home");
+                }
+              },
               child: Stack(
                 children: [
                   Container(

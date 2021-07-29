@@ -10,7 +10,8 @@ class Login_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double maxWidth = MediaQuery.of(context).size.width;
     final double maxHeight = MediaQuery.of(context).size.height;
-
+    String email = "";
+    String password = "";
     if (Device.get().isPhone) {
       return Scaffold(
         resizeToAvoidBottomInset: false,

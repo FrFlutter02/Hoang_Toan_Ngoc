@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/src/screens/home_screen.dart';
 
 import 'screens/onboarding_screen.dart';
 import 'screens/login_screen.dart';
@@ -17,6 +18,7 @@ class App extends StatelessWidget {
         '/LoginScreen': (context) => Login_Screen(),
         '/ForgotPasswordScreen': (context) => ForgotPasswordScreen(),
         '/SignUpScreen': (context) => SignUpScreen(),
+        '/Home': (context) => Home_Screen()
       },
     );
   }
