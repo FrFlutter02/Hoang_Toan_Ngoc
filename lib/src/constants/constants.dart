@@ -27,11 +27,13 @@ class AppConstants {
   static const String alreadyHaveAnAccountText = "Already have an account?";
   static const String validateNameText =
       "Enter valid name of more then 3 characters!";
-  static const String validateEmailText = "Enter valid email";
+  static const String validateEmailText = "Please enter valid email";
   static const String validatePassWordText =
       "Enter valid password of more then 8 characters!";
   static const String emailValidatorCode =
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  static const String passWordValidatorCode =
+      r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$';
 }
 
 class AppFonts {

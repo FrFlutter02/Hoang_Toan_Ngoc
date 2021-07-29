@@ -1,14 +1,11 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'blocs/authentication_bloc/authentication_bloc.dart';
-import 'blocs/authentication_bloc/authentication_event.dart';
-import 'repository/user_repository.dart';
-import 'blocs/simple_bloc_observer.dart';
 import 'screens/forgot_password_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/onboarding_screen.dart';
+import 'blocs/sign_up_bloc/sign_up_bloc.dart';
+import 'repository/user_repository.dart';
 import 'screens/sign_up_screen.dart';
 
 class App extends StatelessWidget {
@@ -17,24 +14,25 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Bloc.observer = SimpleBlocObserver();
-    WidgetsFlutterBinding.ensureInitialized();
-    Firebase.initializeApp();
+
     final UserRepository userRepository = UserRepository();
 
-    return BlocProvider(
-        create: (context) => AuthenticationBloc(
-              userRepository: userRepository,
-            )..add(AuthenticationStarted()),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          initialRoute: '/',
-          routes: {
-            '/': (context) => OnboardingScreen(),
-            '/LoginScreen': (context) => LoginScreen(),
-            '/ForgotPasswordScreen': (context) => ForgotPasswordScreen(),
-            '/SignUpScreen': (context) => SignUpScreen(),
-            // '/': (context) => SignUpScreen(),
-          },
-        ));
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SignUpBloc>(
+            create: (context) => SignUpBloc(userRepository: userRepository)),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => OnboardingScreen(),
+          '/LoginScreen': (context) => LoginScreen(),
+          '/ForgotPasswordScreen': (context) => ForgotPasswordScreen(),
+          '/SignUpScreen': (context) => SignUpScreen(),
+          // '/': (context) => SignUpScreen(),
+        },
+      ),
+    );
   }
 }

@@ -11,11 +11,21 @@ class UserRepository {
         email: email, password: password);
   }
 
-  Future<void> signUp(String email, String password, String fullName) {
-    return _firebaseAuth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+  Future<void> signUp(String email, String password, String fullName) async {
+    try {
+      UserCredential newUser = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      User user;
+      user = newUser.user!;
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .set({'fullName': fullName});
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> signOut() {
