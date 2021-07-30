@@ -24,9 +24,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^7.0.1
+  bloc: ^7.0.0
   equatable: ^2.0.3
   firebase_auth: ^3.0.1
   firebase_core: ^1.4.0
+  firebase_storage: ^10.0.1
+  cloud_firestore: ^2.4.0
   flutter_device_type: ^0.4.0
 
 

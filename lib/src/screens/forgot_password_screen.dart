@@ -3,6 +3,7 @@ import 'package:flutter_device_type/flutter_device_type.dart';
 
 import '../constants/constants.dart';
 import '../repositories/user_repository.dart';
+import '../utils/validators.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -236,9 +237,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            userRepository
-                                .sendPasswordResetMail(emailController.text);
-                            Navigator.of(context).pop();
+                            if (emailController.text.isNotEmpty) {
+                              userRepository
+                                  .sendPasswordResetMail(emailController.text);
+                              Navigator.of(context).pop();
+                            }
                           },
                           child: Center(
                             child: Text(
