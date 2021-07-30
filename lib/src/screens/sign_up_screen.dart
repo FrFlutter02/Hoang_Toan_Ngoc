@@ -4,8 +4,14 @@ import 'package:flutter_device_type/flutter_device_type.dart';
 import '../widgets/form_sign_up.dart';
 import '../constants/constants.dart';
 import '../widgets/logo.dart';
+import '../repositories/user_repository.dart';
 
 class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({Key? key, required this.userRepository})
+      : super(key: key);
+
+  final UserRepository userRepository;
+
   @override
   Widget build(BuildContext context) {
     double titleLeftPadding = MediaQuery.of(context).size.width * (25 / 375);
@@ -53,18 +59,21 @@ class SignUpScreen extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius:
                           BorderRadius.only(bottomRight: Radius.circular(90.0)),
-                      child: (Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              AppImages.imageSignUpPath,
+                      child: Opacity(
+                        opacity: 0.7,
+                        child: (Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                AppImages.imageSignUpPath,
+                              ),
+                              fit: BoxFit.fitWidth,
+                              alignment: FractionalOffset.topLeft,
                             ),
-                            fit: BoxFit.fitWidth,
-                            alignment: FractionalOffset.topLeft,
                           ),
-                        ),
-                      )),
+                        )),
+                      ),
                     ),
                   ),
                   Flexible(
@@ -124,7 +133,7 @@ class SignUpScreen extends StatelessWidget {
                   if (Device.get().isPhone)
                     (Flexible(
                       flex: formFlex,
-                      child: FormSignUp(),
+                      child: FormSignUp(userRepository: userRepository),
                     ))
                   else
                     (Flexible(
@@ -144,7 +153,7 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          child: FormSignUp(),
+                          child: FormSignUp(userRepository: userRepository),
                         ),
                       ),
                     )),

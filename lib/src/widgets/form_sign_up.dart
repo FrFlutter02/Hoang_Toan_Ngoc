@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 
@@ -6,9 +7,9 @@ import '../repositories/user_repository.dart';
 import '../constants/constants.dart';
 
 class FormSignUp extends StatefulWidget {
-  FormSignUp({
-    Key? key,
-  }) : super(key: key);
+  FormSignUp({Key? key, required this.userRepository}) : super(key: key);
+
+  final UserRepository userRepository;
 
   @override
   _FormSignUpState createState() => _FormSignUpState();
@@ -26,7 +27,6 @@ class _FormSignUpState extends State<FormSignUp> {
   final emailController = TextEditingController();
   final fullNameController = TextEditingController();
   final passWordController = TextEditingController();
-  final UserRepository userRepository = UserRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -145,13 +145,22 @@ class _FormSignUpState extends State<FormSignUp> {
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                   child: TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         _saveForm();
                         if (fullNameValidators == true &&
                             emailValidators == true &&
                             passWordValidators == true) {
-                          userRepository.signUp(emailController.text,
-                              passWordController.text, fullNameController.text);
+                          String result = await widget.userRepository.signUp(
+                              emailController.text,
+                              passWordController.text,
+                              fullNameController.text);
+                          if (result == "Success") {
+                            Navigator.of(context).pushNamed("/Home");
+                          } else {
+                            SnackBar(
+                              content: Text('Message is deleted!'),
+                            );
+                          }
                         }
                         FocusScope.of(context).requestFocus(FocusNode());
                       },

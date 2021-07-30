@@ -3,14 +3,24 @@ import 'package:flutter_device_type/flutter_device_type.dart';
 
 import '../constants/constants.dart';
 import '../widgets/login_body.dart';
+import '../repositories/user_repository.dart';
 
-class Login_Screen extends StatelessWidget {
+class Login_Screen extends StatefulWidget {
+  const Login_Screen({Key? key, required this.userRepository})
+      : super(key: key);
+
+  final UserRepository userRepository;
+
+  @override
+  _Login_ScreenState createState() => _Login_ScreenState();
+}
+
+class _Login_ScreenState extends State<Login_Screen> {
   @override
   Widget build(BuildContext context) {
     final double maxWidth = MediaQuery.of(context).size.width;
     final double maxHeight = MediaQuery.of(context).size.height;
-    String email = "";
-    String password = "";
+
     if (Device.get().isPhone) {
       return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -73,7 +83,10 @@ class Login_Screen extends StatelessWidget {
                   )
                 ],
               ),
-              Login_Body(Width: maxWidth, Height: maxHeight)
+              Login_Body(
+                  Width: maxWidth,
+                  Height: maxHeight,
+                  userRepository: widget.userRepository)
             ],
           ),
         ),
@@ -157,9 +170,9 @@ class Login_Screen extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Center(
                     child: Login_Body(
-                      Height: 467,
-                      Width: 425,
-                    ),
+                        Height: 467,
+                        Width: 425,
+                        userRepository: widget.userRepository),
                   ),
                 ),
               ),
