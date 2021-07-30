@@ -30,7 +30,7 @@ class Logo extends StatelessWidget {
         Text(AppConstants.nameApp,
             style: Theme.of(context).textTheme.headline6!.copyWith(
                 color: Color(AppSignUpScreen.logoTextColor),
-                fontWeight: FontWeight.bold,
+                fontFamily: AppFonts.fontAppRegular,
                 letterSpacing: 0.4,
                 height: 1)),
       ],

@@ -53,18 +53,22 @@ class SignUpScreen extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius:
                           BorderRadius.only(bottomRight: Radius.circular(90.0)),
-                      child: (Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              AppImages.imageSignUpPath,
+                      child: Opacity(
+                        opacity: 0.7,
+                        child: (Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                AppImages.imageSignUpPath,
+                              ),
+                              fit: BoxFit.fitWidth,
+                              alignment: FractionalOffset.topLeft,
                             ),
-                            fit: BoxFit.fitWidth,
-                            alignment: FractionalOffset.topLeft,
                           ),
-                        ),
-                      )),
+                        )),
+                      ),
                     ),
                   ),
                   Flexible(
