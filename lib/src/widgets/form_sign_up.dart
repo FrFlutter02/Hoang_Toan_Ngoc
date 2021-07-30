@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 
@@ -127,7 +128,7 @@ class _FormSignUpState extends State<FormSignUp> {
                   contentPadding: EdgeInsets.only(top: 15, bottom: 6),
                 ),
                 validator: (passWordValue) {
-                  if (Validators.isValidEmail(passWordValue!)) {
+                  if (Validators.isValidPassword(passWordValue!)) {
                     passWordValidators = true;
                     return null;
                   } else {
@@ -145,13 +146,22 @@ class _FormSignUpState extends State<FormSignUp> {
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                   child: TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         _saveForm();
                         if (fullNameValidators == true &&
                             emailValidators == true &&
                             passWordValidators == true) {
-                          userRepository.signUp(emailController.text,
-                              passWordController.text, fullNameController.text);
+                          String result = await userRepository.signUp(
+                              emailController.text,
+                              passWordController.text,
+                              fullNameController.text);
+                          if (result == "Success") {
+                            Navigator.of(context).pushNamed("/Home");
+                          } else {
+                            SnackBar(
+                              content: Text('Message is deleted!'),
+                            );
+                          }
                         }
                         FocusScope.of(context).requestFocus(FocusNode());
                       },

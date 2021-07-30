@@ -3,15 +3,24 @@ import 'package:flutter/material.dart';
 import '../repositories/user_repository.dart';
 import '../constants/constants.dart';
 
-class Login_Body extends StatelessWidget {
+class Login_Body extends StatefulWidget {
   // This widget is the root of your application.
   final double Width;
   final double Height;
 
   Login_Body({required this.Width, required this.Height});
+
+  @override
+  _Login_BodyState createState() => _Login_BodyState();
+}
+
+class _Login_BodyState extends State<Login_Body> {
   final emailController = TextEditingController();
+
   final passWordController = TextEditingController();
+
   final UserRepository _userRepository = UserRepository();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,20 +28,20 @@ class Login_Body extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(padding: EdgeInsets.only(top: 0.025 * Height)),
+          Padding(padding: EdgeInsets.only(top: 0.025 * widget.Height)),
           Container(
             height: 22,
-            width: Width * 0.53,
-            padding: EdgeInsets.symmetric(horizontal: 0.0667 * Width),
+            width: widget.Width * 0.53,
+            padding: EdgeInsets.symmetric(horizontal: 0.0667 * widget.Width),
             child: Text(
               AppLoginScreen.emailRemind,
               style: TextStyle(
                   fontSize: 14, fontFamily: "Nunito", color: Color(0xff606060)),
             ),
           ),
-          Padding(padding: EdgeInsets.only(top: Height * 0.046)),
+          Padding(padding: EdgeInsets.only(top: widget.Height * 0.046)),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 0.0667 * Width),
+            padding: EdgeInsets.symmetric(horizontal: 0.0667 * widget.Width),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -56,7 +65,8 @@ class Login_Body extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.symmetric(
-                vertical: Height * 0.037, horizontal: Width * 0.067),
+                vertical: widget.Height * 0.037,
+                horizontal: widget.Width * 0.067),
             child: Stack(
               children: [
                 Column(
@@ -105,7 +115,7 @@ class Login_Body extends StatelessWidget {
           ),
           Container(
             height: (70),
-            padding: EdgeInsets.symmetric(horizontal: 0.05 * Width),
+            padding: EdgeInsets.symmetric(horizontal: 0.05 * widget.Width),
             child: TextButton(
               onPressed: () async {
                 String result = await _userRepository.signInWithCredentials(
@@ -135,7 +145,7 @@ class Login_Body extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 0.037 * Height),
+            padding: EdgeInsets.only(top: 0.037 * widget.Height),
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

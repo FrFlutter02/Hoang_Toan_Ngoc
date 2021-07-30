@@ -4,13 +4,17 @@ import 'package:flutter_device_type/flutter_device_type.dart';
 import '../constants/constants.dart';
 import '../widgets/login_body.dart';
 
-class Login_Screen extends StatelessWidget {
+class Login_Screen extends StatefulWidget {
+  @override
+  _Login_ScreenState createState() => _Login_ScreenState();
+}
+
+class _Login_ScreenState extends State<Login_Screen> {
   @override
   Widget build(BuildContext context) {
     final double maxWidth = MediaQuery.of(context).size.width;
     final double maxHeight = MediaQuery.of(context).size.height;
-    String email = "";
-    String password = "";
+
     if (Device.get().isPhone) {
       return Scaffold(
         resizeToAvoidBottomInset: false,
