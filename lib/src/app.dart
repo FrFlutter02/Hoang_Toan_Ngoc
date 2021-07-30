@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs/authentication_bloc/authentication_bloc.dart';
+import 'blocs/authentication_bloc/authentication_event.dart';
 import 'screens/home_screen.dart';
 import 'blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'repository/user_repository.dart';
@@ -17,6 +19,10 @@ class App extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+            create: (context) => AuthenticationBloc(
+                  userRepository: userRepository,
+                )..add(AuthenticationStarted())),
         BlocProvider<SignUpBloc>(
             create: (context) => SignUpBloc(userRepository: userRepository)),
       ],

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'sign_up_event.dart';
 import 'sign_up_state.dart';
 import '../../repository/user_repository.dart';
@@ -37,16 +39,16 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       {required String email,
       required String password,
       required String fullName}) async* {
-    // if(Validators.isValidPassword(password)){
-
-    // }
     yield SignUpState.loading();
-    try {
-      await _userRepository.signUp(email, password, fullName);
-      yield SignUpState.success();
-    } catch (error) {
-      print(error);
-      yield SignUpState.failure();
+    if (Validators.isValidEmail(email) &&
+        Validators.isValidPassword(password)) {
+      try {
+        await _userRepository.signUp(email, password, fullName);
+        yield SignUpState.success();
+      } on FirebaseAuthException catch (error) {
+        print(error);
+        yield SignUpState.failure();
+      }
     }
   }
 }
