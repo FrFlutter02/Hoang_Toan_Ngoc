@@ -198,7 +198,8 @@ class OnboardingScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8)),
                           child: TextButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/LoginScreen');
+                              Navigator.of(context)
+                                  .pushNamed('/ForgotPasswordScreen');
                             },
                             child: Text(
                               AppConstants.joinScratchButton,
