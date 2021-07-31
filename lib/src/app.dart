@@ -13,27 +13,19 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Bloc.observer = SimpleBlocObserver();
-
     final UserRepository userRepository = UserRepository();
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
             create: (context) => AuthenticationBloc(
                   userRepository: userRepository,
                 )..add(AuthenticationStarted())),
-        BlocProvider<SignUpBloc>(
-            create: (context) => SignUpBloc(userRepository: userRepository)),
+        BlocProvider<SignUpBloc>(create: (context) => SignUpBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          // '/': (context) => OnboardingScreen(),
-          // '/LoginScreen': (context) => LoginScreen(),
-          // '/ForgotPasswordScreen': (context) => ForgotPasswordScreen(),
-          // '/SignUpScreen': (context) => SignUpScreen(),
           '/': (context) => SignUpScreen(),
           '/Home': (context) => Home_Screen()
         },
