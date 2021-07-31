@@ -6,6 +6,7 @@ import '../constants/constants.dart';
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
 
+  //source for review
   @override
   Widget build(BuildContext context) {
     double heightScreen = MediaQuery.of(context).size.height;
