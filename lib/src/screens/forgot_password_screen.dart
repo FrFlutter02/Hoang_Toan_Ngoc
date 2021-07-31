@@ -32,7 +32,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     if (state is ResetPasswordSubmitSuccess) {
       if (state.success) {
         Future.delayed(Duration(seconds: 1), () {
-          Navigator.of(context).pushNamed('/LoginScreen');
+          Navigator.of(context).pushNamed('/Home');
           state.success = false;
         });
       }

@@ -95,7 +95,7 @@ class OnboardingScreen extends StatelessWidget {
             if (Device.get().isPhone)
               (InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/LoginScreen');
+                  Navigator.of(context).pushNamed('/ForgotPasswordScreen');
                 },
                 child: Container(
                   width: widthScreen,
