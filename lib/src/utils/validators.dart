@@ -1,11 +1,11 @@
-import '../constants/constants.dart';
+import '../constants/constants_text.dart';
 
 class Validators {
   static final RegExp _emailRegExp = RegExp(
-    AppConstants.emailValidatorCode,
+    AppConstantsText.emailValidatorCode,
   );
   static final RegExp _passwordRegExp = RegExp(
-    AppConstants.passWordValidatorCode,
+    AppConstantsText.passWordValidatorCode,
   );
 
   static isValidEmail(String email) {

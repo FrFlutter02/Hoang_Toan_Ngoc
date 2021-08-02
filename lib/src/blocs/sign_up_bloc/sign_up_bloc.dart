@@ -21,6 +21,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         } on FirebaseAuthException catch (exception) {
           print(exception);
           yield SignUpAuthFailure(exception);
+        } catch (e) {
+          print(e);
         }
         break;
     }

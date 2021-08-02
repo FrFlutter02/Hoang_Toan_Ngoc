@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 
-import '../constants/constants.dart';
+import '../constants/constants_text.dart';
+import '../constants/constants_color.dart';
 
 class Logo extends StatelessWidget {
   const Logo({
@@ -22,12 +23,12 @@ class Logo extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 10),
           child: Image.asset(
-            AppImages.imageLogoPath,
+            AppIcons.imageLogoPath,
             height: 26,
             width: 18,
           ),
         ),
-        Text(AppConstants.nameApp,
+        Text(AppConstantsText.nameApp,
             style: Theme.of(context).textTheme.headline6!.copyWith(
                 color: Color(AppSignUpScreen.logoTextColor),
                 fontFamily: AppFonts.fontAppRegular,
