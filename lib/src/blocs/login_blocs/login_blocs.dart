@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_app/src/blocs/login_blocs/login_event.dart';
-import 'package:mobile_app/src/blocs/login_blocs/login_states.dart';
-import 'package:mobile_app/src/repositories/user_repository.dart';
-import 'package:mobile_app/src/utils/validators.dart';
+import '../login_blocs/login_event.dart';
+import '../login_blocs/login_states.dart';
+import '/src/repositories/user_repository.dart';
+import '/src/utils/validators.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   @override
