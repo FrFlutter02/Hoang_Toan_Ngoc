@@ -21,10 +21,6 @@ class AppConstantsText {
       "Email should have a valid email address form.";
   static const String validatePassWordText =
       "Password should have more than 8 characters, \nincluding number, lower and upper character, \nand uncharacter.";
-  static const String emailValidatorCode =
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-  static const String passWordValidatorCode =
-      r'^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}$';
   static const String obscuringCharacter = '⬤';
 }
 

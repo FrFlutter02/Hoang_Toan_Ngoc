@@ -9,7 +9,7 @@ import '../widgets/logo.dart';
 class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double bannerLeftPadding = MediaQuery.of(context).size.width * (25 / 375);
+    double bannerLeftPadding = MediaQuery.of(context).size.width * 25 / 375;
     double mainTabletPadding = 0;
     CrossAxisAlignment bannerCrossAxisAlignment = CrossAxisAlignment.start;
     double logoTopPadding = 0;
@@ -38,7 +38,7 @@ class SignUpScreen extends StatelessWidget {
       formBottomPadding = MediaQuery.of(context).size.height * 172 / 1024;
       bannerFlex = MediaQuery.of(context).size.height * 305 / 1024;
       formHeight = MediaQuery.of(context).size.height * 547 / 1024;
-      mainTabletPadding = MediaQuery.of(context).size.width * (172 / 768);
+      mainTabletPadding = MediaQuery.of(context).size.width * 172 / 768;
       title = SignUpText.titleText;
     }
     return Scaffold(

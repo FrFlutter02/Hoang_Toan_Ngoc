@@ -21,6 +21,8 @@ class FormSignUp extends StatefulWidget {
   _FormSignUpState createState() => _FormSignUpState();
 }
 
+enum errorEmailText { success, failure }
+
 class _FormSignUpState extends State<FormSignUp> {
   final _form = GlobalKey<FormState>();
   void _saveForm() {

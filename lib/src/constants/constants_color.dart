@@ -7,7 +7,7 @@ class AppSignUpScreen {
   static const int logoTextColor = 0xff363837;
 }
 
-class AppColorConstants {
+class AppConstantsColors {
   static const int mainGreenColor = 0xff30BE76;
   static const int textAndBackGroundBlackColor = 0xff030F09;
   static const int textAndBackGroundLightGreyColor = 0xff767676;

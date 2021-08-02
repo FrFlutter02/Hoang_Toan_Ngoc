@@ -15,34 +15,24 @@ class AuthenticationBloc
   @override
   Stream<AuthenticationState> mapEventToState(
       AuthenticationEvent event) async* {
-    if (event is AuthenticationStarted) {
-      yield* _mapAuthenticationStartedToState();
-    } else if (event is AuthenticationLoggedIn) {
-      yield* _mapAuthenticationLoggedInToState();
-    } else if (event is AuthenticationLoggedOut) {
-      yield* _mapAuthenticationLoggedOutInToState();
-    }
-  }
-
-  //AuthenticationLoggedOut
-  Stream<AuthenticationState> _mapAuthenticationLoggedOutInToState() async* {
-    yield AuthenticationFailure();
-    _userRepository.signOut();
-  }
-
-  //AuthenticationLoggedIn
-  Stream<AuthenticationState> _mapAuthenticationLoggedInToState() async* {
-    yield AuthenticationSuccess(await _userRepository.getUser());
-  }
-
-  // AuthenticationStarted
-  Stream<AuthenticationState> _mapAuthenticationStartedToState() async* {
-    final isSignedIn = await _userRepository.isSignedIn();
-    if (isSignedIn) {
-      final firebaseUser = await _userRepository.getUser();
-      yield AuthenticationSuccess(firebaseUser);
-    } else {
-      yield AuthenticationFailure();
+    switch (event.runtimeType) {
+      case AuthenticationStarted:
+        final isSignedIn = await _userRepository.isSignedIn();
+        if (isSignedIn) {
+          final firebaseUser = await _userRepository.getUser();
+          yield AuthenticationSuccess(firebaseUser);
+        } else {
+          yield AuthenticationFailure();
+        }
+        break;
+      case AuthenticationLoggedIn:
+        yield AuthenticationSuccess(await _userRepository.getUser());
+        break;
+      case AuthenticationLoggedOut:
+        yield AuthenticationFailure();
+        _userRepository.signOut();
+        break;
+      default:
     }
   }
 }
