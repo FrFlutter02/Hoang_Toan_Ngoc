@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../constants/constants_color.dart';
 import '../blocs/login_blocs/login_blocs.dart';
 import '../blocs/login_blocs/login_event.dart';
 import '../blocs/login_blocs/login_states.dart';
@@ -51,28 +52,47 @@ class LoginForm extends State<Login_Body> {
     return BlocBuilder<LoginBloc, LoginState>(
         bloc: bloc,
         builder: (context, state) {
+          double formPaddingTop = 0.025 * Height;
+          double formPaddingHorizontal = 0.0667 * Width;
+          double mailRemindFontSize = 14;
+          double emailInputPadding = Height * 0.046;
+          double emailInputHorizontalPadding = 0.0667 * Width;
+          double emailFontSize = 14;
+          double emailRemindContainerWidth = Width * 0.53;
+          double emailRemindContainerHeight = 22;
+          double passwordVerticalPadding = Height * 0.037;
+          double passwordHorizontalPadding = Width * 0.067;
+          double passwordFontSize = 14;
+          double loginHeightContainer = 70;
+          double loginButtonHorizontalPadding = 0.05 * Width;
+          double loginFontSize = 16;
+          double newScratchPadding = 0.037 * Height;
+          double newScratchFontSize = 14;
+          double createAccountFontSize = 16;
           return Container(
             child: Form(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(padding: EdgeInsets.only(top: 0.025 * Height)),
+                  Padding(padding: EdgeInsets.only(top: formPaddingTop)),
                   Container(
-                    height: 22,
-                    width: Width * 0.53,
-                    padding: EdgeInsets.symmetric(horizontal: 0.0667 * Width),
+                    height: emailRemindContainerHeight,
+                    width: emailRemindContainerWidth,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: formPaddingHorizontal),
                     child: Text(
                       AppLoginScreen.emailRemind,
                       style: TextStyle(
-                          fontSize: 14,
+                          fontSize: mailRemindFontSize,
                           fontFamily: AppFonts.fontAppRegular,
-                          color: Color(0xff606060)),
+                          color: Color(AppLoginScreen.remindColor)),
                     ),
                   ),
-                  Padding(padding: EdgeInsets.only(top: Height * 0.046)),
+                  Padding(padding: EdgeInsets.only(top: emailInputPadding)),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 0.0667 * Width),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: emailInputHorizontalPadding),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -81,8 +101,8 @@ class LoginForm extends State<Login_Body> {
                             AppLoginScreen.emailHint,
                             style: TextStyle(
                                 fontFamily: AppFonts.fontAppRegular,
-                                fontSize: 14,
-                                color: Color(0xffA8A8A8)),
+                                fontSize: emailFontSize,
+                                color: Color(AppLoginScreen.hintTextColor)),
                           ),
                         ),
                         Form(
@@ -93,7 +113,8 @@ class LoginForm extends State<Login_Body> {
                               controller: emailController,
                               validator: (value) {
                                 String check = value ?? "";
-                                if (check == "") {
+                                if (check == "" ||
+                                    checkValidateEmail(check) != "") {
                                   return null;
                                 } else {
                                   return checkValidateEmail(check);
@@ -107,7 +128,8 @@ class LoginForm extends State<Login_Body> {
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(
-                        vertical: Height * 0.037, horizontal: Width * 0.067),
+                        vertical: passwordVerticalPadding,
+                        horizontal: passwordHorizontalPadding),
                     child: Stack(
                       children: [
                         Column(
@@ -122,8 +144,9 @@ class LoginForm extends State<Login_Body> {
                                     AppLoginScreen.passwordHint,
                                     style: TextStyle(
                                         fontFamily: AppFonts.fontAppRegular,
-                                        fontSize: 14,
-                                        color: Color(0xffA8A8A8)),
+                                        fontSize: passwordFontSize,
+                                        color: Color(
+                                            AppLoginScreen.hintTextColor)),
                                   ),
                                   TextButton(
                                       onPressed: () {
@@ -136,8 +159,9 @@ class LoginForm extends State<Login_Body> {
                                           style: TextStyle(
                                               fontFamily:
                                                   AppFonts.fontAppRegular,
-                                              fontSize: 14,
-                                              color: Color(0xff606060)),
+                                              fontSize: passwordFontSize,
+                                              color: Color(
+                                                  AppLoginScreen.remindColor)),
                                         ),
                                       ))
                                 ],
@@ -157,8 +181,9 @@ class LoginForm extends State<Login_Body> {
                     ),
                   ),
                   Container(
-                    height: (70),
-                    padding: EdgeInsets.symmetric(horizontal: 0.05 * Width),
+                    height: loginHeightContainer,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: loginButtonHorizontalPadding),
                     child: TextButton(
                       onPressed: () {
                         bloc.add(LoginWithCredentialsPressed(
@@ -169,7 +194,8 @@ class LoginForm extends State<Login_Body> {
                         children: [
                           Container(
                               decoration: BoxDecoration(
-                                  color: Color(0xff30BE76),
+                                  color:
+                                      Color(AppColorConstants.systemGreenColor),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(8)))),
                           Container(
@@ -177,7 +203,7 @@ class LoginForm extends State<Login_Body> {
                               child: Text(AppLoginScreen.loginButton,
                                   style: TextStyle(
                                       fontFamily: AppFonts.fontAppRegular,
-                                      fontSize: 16,
+                                      fontSize: loginFontSize,
                                       fontWeight: FontWeight.w700,
                                       color: Colors.white))),
                         ],
@@ -185,18 +211,18 @@ class LoginForm extends State<Login_Body> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 0.037 * Height),
+                    padding: EdgeInsets.only(top: newScratchPadding),
                     child: Center(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
                             child: Text(
-                              AppLoginScreen.newScracth,
+                              AppLoginScreen.newScratch,
                               style: TextStyle(
-                                color: Color(0xffA8A8A8),
+                                color: Color(AppLoginScreen.hintTextColor),
                                 fontFamily: AppFonts.fontAppRegular,
-                                fontSize: 14,
+                                fontSize: newScratchFontSize,
                               ),
                             ),
                           ),
@@ -209,10 +235,11 @@ class LoginForm extends State<Login_Body> {
                                 AppLoginScreen.createAccount,
                                 style: TextStyle(
                                     fontFamily: AppFonts.fontAppRegular,
-                                    fontSize: 16,
+                                    fontSize: createAccountFontSize,
                                     letterSpacing: 0.32,
                                     fontWeight: FontWeight.w700,
-                                    color: Color(0xff30BE76)),
+                                    color: Color(
+                                        AppColorConstants.systemGreenColor)),
                               ),
                             ),
                           )

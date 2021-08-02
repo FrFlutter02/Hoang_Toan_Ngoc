@@ -27,6 +27,9 @@ class Login_Screen extends StatelessWidget {
     double logoLeftPadding = 0;
     double welcomeBackPaddingTop = 0;
     double welcomeBackContainerWidth = 0;
+    double welcomeBackFontSize = 0;
+    double loginBodyWidthContainer = 0;
+    double loginBodyHeightContainer = 0;
     if (Device.get().isPhone) {
       loginImageHeight = maxHeight * 0.35;
       loginImageWidth = maxWidth;
@@ -39,7 +42,9 @@ class Login_Screen extends StatelessWidget {
       logoTextContainerHeight = 20;
       welcomeBackPaddingTop = maxHeight * 0.07;
       welcomeBackContainerWidth = maxWidth * 0.811;
-
+      welcomeBackFontSize = 24;
+      loginBodyWidthContainer = maxWidth;
+      loginBodyHeightContainer = maxHeight;
       return BlocBuilder<LoginBloc, LoginState>(
           bloc: loginBloc,
           builder: (context, state) {
@@ -105,7 +110,7 @@ class Login_Screen extends StatelessWidget {
                                       child: Text(
                                         AppLoginScreen.welcomeBack,
                                         style: TextStyle(
-                                            fontSize: 24,
+                                            fontSize: welcomeBackFontSize,
                                             fontFamily:
                                                 AppFonts.fontAppRegular),
                                       )),
@@ -114,7 +119,9 @@ class Login_Screen extends StatelessWidget {
                             )
                           ],
                         ),
-                        Login_Body(Width: maxWidth, Height: maxHeight)
+                        Login_Body(
+                            Width: loginBodyWidthContainer,
+                            Height: loginBodyHeightContainer)
                       ],
                     ),
                   ),
@@ -127,6 +134,16 @@ class Login_Screen extends StatelessWidget {
             }
           });
     } else {
+      logoTopMargin = maxHeight * 0.078;
+      logoIconContainerWidth = 18;
+      logoIconContainerHeight = 26;
+      logoLeftPadding = 10;
+      logoTextContainerHeight = 20;
+      logoIconContainerWidth = 70;
+      welcomeBackPaddingTop = maxHeight * 0.15;
+      welcomeBackFontSize = 24;
+      loginBodyWidthContainer = 425;
+      loginBodyHeightContainer = 467;
       return BlocBuilder<LoginBloc, LoginState>(
           bloc: loginBloc,
           builder: (context, state) {
@@ -162,7 +179,7 @@ class Login_Screen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: maxHeight * 0.078),
+                      margin: EdgeInsets.only(top: logoTopMargin),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -172,17 +189,19 @@ class Login_Screen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  width: 18,
-                                  height: 26,
+                                  width: logoIconContainerWidth,
+                                  height: logoIconContainerHeight,
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image:
                                               AssetImage(AppLoginScreen.logo))),
                                 ),
-                                Padding(padding: EdgeInsets.only(left: 10)),
+                                Padding(
+                                    padding:
+                                        EdgeInsets.only(left: logoLeftPadding)),
                                 Container(
-                                  width: 70,
-                                  height: 20,
+                                  width: logoTextContainerWidth,
+                                  height: logoTextContainerHeight,
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image: AssetImage(
@@ -192,14 +211,15 @@ class Login_Screen extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.only(top: maxHeight * 0.15)),
+                              padding:
+                                  EdgeInsets.only(top: welcomeBackPaddingTop)),
                           Container(
                               alignment: Alignment.center,
                               width: maxWidth,
                               child: Text(
                                 AppLoginScreen.welcomeBack,
                                 style: TextStyle(
-                                    fontSize: 24,
+                                    fontSize: welcomeBackFontSize,
                                     fontFamily: AppFonts.fontAppRegular),
                               )),
                         ],
@@ -210,8 +230,8 @@ class Login_Screen extends StatelessWidget {
                         child: Center(
                           child: SingleChildScrollView(
                             child: Container(
-                              width: 425,
-                              height: 467,
+                              width: loginBodyWidthContainer,
+                              height: loginBodyHeightContainer,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius:
@@ -219,8 +239,8 @@ class Login_Screen extends StatelessWidget {
                               alignment: Alignment.center,
                               child: Center(
                                 child: Login_Body(
-                                  Height: 467,
-                                  Width: 425,
+                                  Height: loginBodyHeightContainer,
+                                  Width: loginBodyWidthContainer,
                                 ),
                               ),
                             ),

@@ -6,7 +6,7 @@ class AppLoginScreen {
   static const String passwordHint = "Password";
   static const String forgotPassword = "Forgot password?";
   static const String loginButton = "Login";
-  static const String newScracth = "New to Scratch?";
+  static const String newScratch = "New to Scratch?";
   static const String createAccount = "Create Account Here";
   static const String welcomeBack = "Welcome Back!";
 
@@ -14,6 +14,9 @@ class AppLoginScreen {
   static const String logo = "assets/icons/logo.png";
   static const String textLogo = "assets/icons/LogoText.png";
   static const String backGroundLogin = "assets/images/background_image.jpeg";
+
+  static const int remindColor = 0xff606060;
+  static const int hintTextColor = 0xffA8A8A8;
 }
 
 class AppForgotPasswordScreen {}
