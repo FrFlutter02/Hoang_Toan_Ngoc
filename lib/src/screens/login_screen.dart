@@ -26,6 +26,7 @@ class Login_Screen extends StatelessWidget {
     double logoLeftMargin = 0;
     double logoLeftPadding = 0;
     double welcomeBackPaddingTop = 0;
+    double welcomeBackPaddingLeft = 0;
     double welcomeBackContainerWidth = 0;
     double welcomeBackFontSize = 0;
     double loginBodyWidthContainer = 0;
@@ -41,6 +42,7 @@ class Login_Screen extends StatelessWidget {
       logoTextContainerWidth = 70;
       logoTextContainerHeight = 20;
       welcomeBackPaddingTop = maxHeight * 0.07;
+      welcomeBackPaddingLeft = maxWidth * 0.067;
       welcomeBackContainerWidth = maxWidth * 0.811;
       welcomeBackFontSize = 24;
       loginBodyWidthContainer = maxWidth;
@@ -105,7 +107,7 @@ class Login_Screen extends StatelessWidget {
                                           top: welcomeBackPaddingTop)),
                                   Container(
                                       padding: EdgeInsets.only(
-                                          left: welcomeBackPaddingTop),
+                                          left: welcomeBackPaddingLeft),
                                       width: welcomeBackContainerWidth,
                                       child: Text(
                                         AppLoginScreen.welcomeBack,
@@ -139,7 +141,8 @@ class Login_Screen extends StatelessWidget {
       logoIconContainerHeight = 26;
       logoLeftPadding = 10;
       logoTextContainerHeight = 20;
-      logoIconContainerWidth = 70;
+      logoTextContainerWidth = 70;
+      logoLeftPadding = 10;
       welcomeBackPaddingTop = maxHeight * 0.15;
       welcomeBackFontSize = 24;
       loginBodyWidthContainer = 425;
