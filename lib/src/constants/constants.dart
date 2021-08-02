@@ -38,11 +38,8 @@ class AppConstants {
   static const String learnMoreButton = 'Learn More';
   static const String startFromScratchText = 'Start from Scratch';
   static const String errorMessage = 'Error';
-
   static const String validateEmailText =
       "Email should have a valid email address form. ";
-  static const String validatePassWordText =
-      "Password should have more than 8 characters, including number, \nlower and upper character, and uncharacter.";
   static const String emailValidatorCode =
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
   static const String passWordValidatorCode =
@@ -52,7 +49,7 @@ class AppConstants {
 class AppImages {
   static const String backGroundOnboardingImage =
       'assets/images/backgroundonboarding.png';
-  static const String backGroundImage = 'assets/images/backgroundImage.png';
+  static const String backGroundImage = 'assets/images/background_image.png';
 }
 
 class AppIcons {

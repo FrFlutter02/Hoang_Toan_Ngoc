@@ -1,4 +1,4 @@
-part of 'reset_password_bloc.dart';
+import 'package:equatable/equatable.dart';
 
 abstract class ResetPasswordState extends Equatable {
   const ResetPasswordState();
@@ -8,6 +8,14 @@ abstract class ResetPasswordState extends Equatable {
 }
 
 class ResetPasswordInitial extends ResetPasswordState {}
+
+class EmailChangeSuccess extends ResetPasswordState {
+  bool isValidEmail;
+  EmailChangeSuccess({required this.isValidEmail});
+
+  @override
+  List<Object> get props => [isValidEmail];
+}
 
 class ResetPasswordSubmitSuccess extends ResetPasswordState {
   bool success;

@@ -1,11 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 
 import '../../repositories/user_repository.dart';
 import '../../constants/constants.dart';
-
-part 'reset_password_event.dart';
-part 'reset_password_state.dart';
+import '../reset_password_blocs/reset_password_event.dart';
+import '../reset_password_blocs/reset_password_state.dart';
+import '../../utils/validators.dart';
 
 class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
   ResetPasswordBloc({required this.userRepository})
@@ -19,6 +18,11 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     ResetPasswordEvent event,
   ) async* {
     switch (event.runtimeType) {
+      case EmailChanged:
+        final emailChangedEvent = event as EmailChanged;
+        yield EmailChangeSuccess(
+            isValidEmail: Validators.isValidEmail(emailChangedEvent.email));
+        break;
       case ResetPasswordSubmitted:
         final resetPasswordSubmittedEvent = event as ResetPasswordSubmitted;
         userRepository.sendPasswordResetMail(resetPasswordSubmittedEvent.email);
