@@ -22,20 +22,27 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
-    if (event is LoginFetched) {
-      yield LoginFailure();
-    }
-    if (event is LoginWithCredentialsPressed) {
-      yield LoginLoading();
-      String email = event.email;
-      String password = event.password;
-      bool check = await checkAccount(email, password);
-      if (check == true) {
-        User user = await userRepository.getUser();
-        yield LoginSuccess(firebaseUser: user);
-      } else {
+    switch (event.runtimeType) {
+      case LoginFetched:
         yield LoginFailure();
-      }
+        break;
+      case LoginWithCredentialsPressed:
+        if (event is LoginWithCredentialsPressed) {
+          yield LoginLoading();
+          String email = event.email;
+          String password = event.password;
+          bool check = await checkAccount(email, password);
+          if (check == true) {
+            User user = await userRepository.getUser();
+            yield LoginSuccess(firebaseUser: user);
+          } else {
+            yield LoginFailure();
+          }
+        }
+        break;
+
+      default:
+        yield LoginFailure();
     }
   }
 }
