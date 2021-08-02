@@ -3,10 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:suorce_review/src/blocs/reset_password_blocs/reset_password_bloc.dart';
 import 'package:suorce_review/src/repositories/user_repository.dart';
 
-import '../src/screens/onboarding_screen.dart';
-import '../src/screens/login_screen.dart';
 import '../src/screens/forgot_password_screen.dart';
-import '../src/screens/sign_up_screen.dart';
 import '../src/screens/home_screen.dart';
 
 class App extends StatelessWidget {
@@ -25,12 +22,9 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         routes: {
-          '/': (context) => OnboardingScreen(),
-          '/LoginScreen': (context) => Login_Screen(),
-          '/ForgotPasswordScreen': (context) =>
+          '/': (context) =>
               ForgotPasswordScreen(userRepository: userRepository),
-          '/SignUpScreen': (context) => SignUpScreen(),
-          '/Home': (context) => Home_Screen()
+          '/Home': (context) => HomeScreen()
         },
       ),
     );
