@@ -9,8 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:mobile_app/src/app.dart';
+import 'package:mobile_app/src/repositories/user_repository.dart';
 
 void main() {
+  UserRepository userRepository = UserRepository();
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(App());

@@ -1,48 +1,41 @@
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:mobile_app/src/blocs/login_blocs/login_event.dart';
-// import 'package:mobile_app/src/blocs/login_blocs/login_states.dart';
-// import 'package:mobile_app/src/repositories/user_repository.dart';
-// import 'package:mobile_app/src/utils/validators.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_app/src/blocs/login_blocs/login_event.dart';
+import 'package:mobile_app/src/blocs/login_blocs/login_states.dart';
+import 'package:mobile_app/src/repositories/user_repository.dart';
+import 'package:mobile_app/src/utils/validators.dart';
 
-// class LoginBloc extends Bloc<LoginEvent, LoginState> {
-//   final UserRepository _userRepository;
+class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  @override
+  final Validators validators = Validators();
+  final UserRepository userRepository = UserRepository();
 
-//   LoginBloc({required UserRepository userRepository})
-//       : _userRepository = userRepository,
-//         super(LoginState.initial());
+  LoginBloc() : super(LoginInitial());
+  Future<bool> checkAccount(String email, String password) async {
+    String isAccount =
+        await userRepository.signInWithCredentials(email, password);
 
-//   @override
-//   Stream<LoginState> mapEventToState(LoginEvent event) async* {
-//     if (event is LoginEmailChange) {
-//       yield* _mapLoginEmailChangeToState(event.email);
-//     } else if (event is LoginPasswordChanged) {
-//       yield* _mapLoginPasswordChangeToState(event.password);
-//     } else if (event is LoginWithCredentialsPressed) {
-//       yield* _mapLoginWithCredentialsPressedToState(
-//           email: event.email, password: event.password);
-//     }
-//   }
+    if (isAccount == "signed in")
+      return true;
+    else
+      return false;
+  }
 
-//   Stream<LoginState> _mapLoginEmailChangeToState(
-//       String email, String password) async* {
-//     yield state.update(
-//         isEmailValid: Validators.isValidEmail(email),
-//         isPasswordValid: false);
-//   }
-//    Stream<LoginState> _mapLoginPasswordChangeToState(
-//       String email, String password) async* {
-//     yield state.update(
-//         isEmailValid: Validators.isValidEmail(email),
-//         isPasswordValid: false);
-//   }
-//   Stream<LoginState> _mapLoginWithCredentialsPressedToState(
-//       {required String email, required String password}) async* {
-//     yield LoginState.loading();
-//     try {
-//       await _userRepository.signInWithCredentials(email, password);
-//       yield LoginState.success();
-//     } catch (_) {
-//       yield LoginState.failure();
-//     }
-//   }
-// }
+  Stream<LoginState> mapEventToState(LoginEvent event) async* {
+    if (event is LoginFetched) {
+      yield LoginFailure();
+    }
+    if (event is LoginWithCredentialsPressed) {
+      yield LoginLoading();
+      String email = event.email;
+      String password = event.password;
+      bool check = await checkAccount(email, password);
+      if (check == true) {
+        User user = await userRepository.getUser();
+        yield LoginSuccess(firebaseUser: user);
+      } else {
+        yield LoginFailure();
+      }
+    }
+  }
+}
