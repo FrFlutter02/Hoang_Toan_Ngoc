@@ -8,7 +8,7 @@ import '../screens/home_screen.dart';
 import '../constants/constants.dart';
 import '../widgets/login_body.dart';
 
-class Login_Screen extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   // This widget is the root of your application.
 
   @override

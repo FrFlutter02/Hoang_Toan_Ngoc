@@ -29,8 +29,8 @@ class App extends StatelessWidget {
               create: (context) => LoginBloc()..add(LoginFetched()))
         ],
         child: MaterialApp(initialRoute: '/LoginScreen', routes: {
-          '/': (context) => Onboarding_Screen(),
-          '/LoginScreen': (context) => Login_Screen(),
+          '/': (context) => OnboardingScreen(),
+          '/LoginScreen': (context) => LoginScreen(),
           '/ForgotPasswordScreen': (context) => ForgotPasswordScreen(),
           '/SignUpScreen': (context) => SignUpScreen(),
           '/Home': (context) => Home_Screen()

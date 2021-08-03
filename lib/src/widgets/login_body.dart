@@ -112,12 +112,10 @@ class LoginForm extends State<Login_Body> {
                               decoration: InputDecoration(),
                               controller: emailController,
                               validator: (value) {
-                                String check = value ?? "";
-                                if (check == "" ||
-                                    checkValidateEmail(check) != "") {
+                                if (value!.isEmpty) {
                                   return null;
                                 } else {
-                                  return checkValidateEmail(check);
+                                  return checkValidateEmail(value);
                                 }
                               },
                             ),

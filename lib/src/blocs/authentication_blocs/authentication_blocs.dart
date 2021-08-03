@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/src/blocs/authentication_blocs/authentication_event.dart';
-import '/src/repositories/user_repository.dart';
+import 'authentication_event.dart';
+import '../../repositories/user_repository.dart';
 
 import 'authentication_state.dart';
 
