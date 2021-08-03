@@ -21,6 +21,8 @@ class FormSignUp extends StatefulWidget {
   _FormSignUpState createState() => _FormSignUpState();
 }
 
+enum ValidatorType { success, failure }
+
 class _FormSignUpState extends State<FormSignUp> {
   final _form = GlobalKey<FormState>();
   void _saveForm() {
@@ -34,7 +36,7 @@ class _FormSignUpState extends State<FormSignUp> {
   final fullNameController = TextEditingController();
   final passWordController = TextEditingController();
   final UserRepository userRepository = UserRepository();
-  dynamic errorEmailText;
+  ValidatorType errorEmailText = ValidatorType.success;
   double btnSignUpHeight = 0;
   double formPadding = 0;
   double subTitleTopPadding = 0;
@@ -69,10 +71,10 @@ class _FormSignUpState extends State<FormSignUp> {
         body: BlocConsumer<SignUpBloc, SignUpState>(listener: (context, state) {
       switch (state.runtimeType) {
         case SignUpLoading:
-          errorEmailText = null;
+          errorEmailText = ValidatorType.success;
           break;
         case SignUpSuccess:
-          errorEmailText = null;
+          errorEmailText = ValidatorType.success;
           BlocProvider.of<AuthenticationBloc>(context)
               .add(AuthenticationLoggedIn());
           Navigator.of(context).pushNamed("/Home");
@@ -80,7 +82,7 @@ class _FormSignUpState extends State<FormSignUp> {
         case SignUpAuthFailure:
           state as SignUpAuthFailure;
           if (state.exception.code == SignUpText.exceptionErrorEmailText) {
-            errorEmailText = SignUpText.errorEmailText;
+            errorEmailText = ValidatorType.failure;
           }
       }
     }, builder: (context, state) {
@@ -144,7 +146,13 @@ class _FormSignUpState extends State<FormSignUp> {
                     validator: (emailValue) {
                       if (Validators.isValidEmail(emailValue!)) {
                         emailValidators = true;
-                        return errorEmailText;
+                        if (errorEmailText == ValidatorType.success) {
+                          return null;
+                        } else if (errorEmailText == ValidatorType.failure) {
+                          return SignUpText.errorEmailText;
+                        } else {
+                          return null;
+                        }
                       } else {
                         emailValidators = false;
                         return AppConstantsText.validateEmailText;
