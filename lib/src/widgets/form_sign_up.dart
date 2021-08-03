@@ -58,8 +58,8 @@ class _FormSignUpState extends State<FormSignUp> {
       btnAndFooterTitlePadding = MediaQuery.of(context).size.height * 30 / 812;
       footerBottomPadding = MediaQuery.of(context).size.height * 45 / 812;
     } else {
-      formPadding = MediaQuery.of(context).size.width * (50 / 768);
-      btnSignUpHeight = MediaQuery.of(context).size.height * (50 / 1024);
+      formPadding = MediaQuery.of(context).size.width * 50 / 768;
+      btnSignUpHeight = MediaQuery.of(context).size.height * 50 / 1024;
       subTitleTopPadding = MediaQuery.of(context).size.height * 50 / 1024;
       subTitleBottomPadding = MediaQuery.of(context).size.height * 30 / 1024;
       textFieldTopPadding = MediaQuery.of(context).size.height * 25 / 1024;
