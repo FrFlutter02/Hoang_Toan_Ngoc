@@ -23,6 +23,7 @@ environment:
 dependencies:
   equatable: ^2.0.3
   cloud_firestore: ^2.4.0
+  mockito: ^5.0.13
   flutter_device_type: ^0.4.0
   firebase_core: ^1.4.0
   google_sign_in: ^5.0.5
