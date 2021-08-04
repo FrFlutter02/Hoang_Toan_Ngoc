@@ -1,4 +1,4 @@
-name: suorce_review
+name: source_review
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^7.0.1
+  flutter_bloc: ^7.1.0
   bloc: ^7.0.0
   equatable: ^2.0.3
   firebase_auth: ^3.0.1

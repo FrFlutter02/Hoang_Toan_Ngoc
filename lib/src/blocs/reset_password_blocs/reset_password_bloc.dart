@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 
 import '../../repositories/user_repository.dart';
-import '../../constants/constants.dart';
+import '../../constants/constant_text.dart';
 import '../reset_password_blocs/reset_password_event.dart';
 import '../reset_password_blocs/reset_password_state.dart';
 import '../../utils/validators.dart';

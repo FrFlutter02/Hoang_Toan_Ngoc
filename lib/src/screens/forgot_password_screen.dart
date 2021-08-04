@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../constants/constants.dart';
+import '../constants/constant_text.dart';
+import '../constants/constant_color.dart';
 import '../repositories/user_repository.dart';
 import '../blocs/reset_password_blocs/reset_password_bloc.dart';
 import '../blocs/reset_password_blocs/reset_password_event.dart';
@@ -46,7 +47,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     } else if (state is ResetPasswordSubmitSuccess) {
       if (state.success) {
         Future.delayed(Duration(seconds: 1), () {
-          Navigator.of(context).pushNamed('/Home');
+          Navigator.of(context).pushNamed('/home');
           state.success = false;
         });
       }
@@ -110,17 +111,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       iconAndTextSpacing = widthScreen * 0.1 / 7.68;
       startTextAndIconSpacing = heightScreen * 1.3 / 10.24;
       containerSpacing = heightScreen * 0.36 / 10.24;
-      containerWidth = widthScreen * 4.25 / 7.68;
-      containerHeight = heightScreen * 5.47 / 10.24;
-      contextPadding = widthScreen * 0.5 / 7.68;
-      topContainerSpacing = heightScreen * 0.5 / 10.24;
-      tuttorialSpacing = heightScreen * 0.39 / 10.24;
+      containerWidth = 425;
+      containerHeight = 547;
+      contextPadding = 50;
+      topContainerSpacing = 50;
+      tuttorialSpacing = 39;
       resetPasswordFontSize = 40;
       tutorialFontSize = 16;
-      emailTextSpacing = heightScreen * 0.5742 / 10.24;
-      enterEmailFieldSpacing = heightScreen * 0.2 / 10.24;
-      buttonSpacing = heightScreen * 0.2758 / 10.24;
-      heightButton = heightScreen * 0.5 / 10.24;
+      emailTextSpacing = 57.42;
+      enterEmailFieldSpacing = 20;
+      buttonSpacing = 27.58;
+      heightButton = 50;
       buttonFontSize = 16;
     }
 
@@ -264,19 +265,21 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             TextFormField(
                               controller: emailController,
                               validator: (_) {
-                                if (isEmailValid == true) {
+                                if (isEmailValid) {
                                   return null;
-                                } else if (isEmailValid == false) {
+                                } else if (!isEmailValid) {
                                   return AppConstants.validateEmailText;
                                 }
                               },
                               keyboardType: TextInputType.emailAddress,
-                              cursorColor: Colors.green,
+                              cursorColor:
+                                  Color(AppForgotPasswordScreen.cursorColor),
                               decoration: InputDecoration(
                                 isDense: true,
                                 focusedBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.green)),
+                                    borderSide: BorderSide(
+                                        color: Color(AppForgotPasswordScreen
+                                            .UnderlineInputColor))),
                               ),
                               style: Theme.of(context)
                                   .textTheme
@@ -303,7 +306,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                   onPressed: () {
                                     _saveForm();
                                     if (emailController.text.isNotEmpty &&
-                                        isEmailValid == true) {
+                                        isEmailValid) {
                                       BlocProvider.of<ResetPasswordBloc>(
                                               context)
                                           .add(ResetPasswordSubmitted(
