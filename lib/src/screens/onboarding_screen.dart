@@ -95,7 +95,7 @@ class OnboardingScreen extends StatelessWidget {
             if (Device.get().isPhone)
               (InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/Home');
+                  Navigator.of(context).pushNamed('/home');
                 },
                 child: Container(
                   width: widthScreen,
@@ -198,7 +198,7 @@ class OnboardingScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8)),
                           child: TextButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/Home');
+                              Navigator.of(context).pushNamed('/home');
                             },
                             child: Text(
                               AppConstants.joinScratchButton,

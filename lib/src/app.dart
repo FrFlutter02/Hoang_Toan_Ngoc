@@ -9,7 +9,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => OnboardingScreen(),
-        '/Home': (context) => HomeScreen(),
+        '/home': (context) => HomeScreen(),
       },
     );
   }
