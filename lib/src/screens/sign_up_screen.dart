@@ -55,15 +55,15 @@ class SignUpScreen extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(90.0)),
                         child: Opacity(
-                            opacity: 0.7,
-                            child: Image(
-                              image: AssetImage(
-                                AppImages.imageSignUpPath,
-                              ),
-                              fit: BoxFit.cover,
-                              alignment: FractionalOffset.topLeft,
-                              width: double.infinity,
-                            )),
+                          opacity: 0.7,
+                          child: Image.asset(
+                            AppImages.imageSignUpPath,
+                            fit: BoxFit.cover,
+                            alignment: FractionalOffset.topLeft,
+                            width: double.infinity,
+                            key: Key("imageMobile"),
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -81,10 +81,8 @@ class SignUpScreen extends StatelessWidget {
                         Colors.white.withOpacity(0),
                       ]).createShader(bounds),
                   child: Container(
-                    child: Image.asset(
-                      AppImages.imageSignUpPath,
-                      fit: BoxFit.cover,
-                    ),
+                    child: Image.asset(AppImages.imageSignUpPath,
+                        fit: BoxFit.cover, key: Key('imageTablet')),
                   ),
                 )),
               Padding(
