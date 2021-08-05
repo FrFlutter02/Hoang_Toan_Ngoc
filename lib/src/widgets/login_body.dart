@@ -18,6 +18,8 @@ class Login_Body extends StatefulWidget {
   LoginForm createState() => LoginForm(Width: Width, Height: Height);
 }
 
+enum ValidatorType { success, failure }
+
 class LoginForm extends State<Login_Body> {
   // This widget is the root of your application.
   final double Width;
@@ -31,7 +33,7 @@ class LoginForm extends State<Login_Body> {
   String checkValidateEmail(String email) {
     bool isValidEmail = validators.isValidEmail(email);
     if (isValidEmail == true) {
-      return "";
+      return "valid";
     } else {
       return "Input correct email";
     }
@@ -43,7 +45,7 @@ class LoginForm extends State<Login_Body> {
     } else if (validators.isValidPassword(Password) == false) {
       return "Incorrect Password";
     } else
-      return "";
+      return "valid";
   }
 
   @override
@@ -70,6 +72,7 @@ class LoginForm extends State<Login_Body> {
           double newScratchFontSize = 14;
           double createAccountFontSize = 16;
           return Container(
+            color: Color(AppColorConstants.textAndBackGroundwhiteColor),
             child: Form(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,7 +109,6 @@ class LoginForm extends State<Login_Body> {
                           ),
                         ),
                         Form(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           child: Container(
                             child: TextFormField(
                               decoration: InputDecoration(),
@@ -184,9 +186,13 @@ class LoginForm extends State<Login_Body> {
                         horizontal: loginButtonHorizontalPadding),
                     child: TextButton(
                       onPressed: () {
-                        bloc.add(LoginWithCredentialsPressed(
-                            email: emailController.text,
-                            password: passWordController.text));
+                        if (checkValidateEmail(emailController.text) ==
+                                "valid" &&
+                            checkValidatePassword(passWordController.text) ==
+                                "valid")
+                          bloc.add(LoginWithCredentialsPressed(
+                              email: emailController.text,
+                              password: passWordController.text));
                       },
                       child: Stack(
                         children: [

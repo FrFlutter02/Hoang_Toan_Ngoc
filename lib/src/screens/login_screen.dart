@@ -50,90 +50,85 @@ class LoginScreen extends StatelessWidget {
       return BlocBuilder<LoginBloc, LoginState>(
           bloc: loginBloc,
           builder: (context, state) {
-            if (state is LoginFailure) {
-              return Scaffold(
-                extendBodyBehindAppBar: true,
-                body: SingleChildScrollView(
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Stack(
-                          children: [
-                            Container(
-                              width: loginImageWidth,
-                              height: loginImageHeight,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                image: AssetImage(AppLoginScreen.loginImage),
-                                fit: BoxFit.fill,
-                              )),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(top: logoTopMargin),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding:
-                                        EdgeInsets.only(left: logoLeftMargin),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          width: logoIconContainerWidth,
-                                          height: logoIconContainerHeight,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      AppLoginScreen.logo))),
-                                        ),
-                                        Padding(
-                                            padding: EdgeInsets.only(
-                                                left: logoLeftPadding)),
-                                        Container(
-                                          width: logoTextContainerWidth,
-                                          height: logoTextContainerHeight,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      AppLoginScreen
-                                                          .textLogo))),
-                                        ),
-                                      ],
-                                    ),
+            if (state is LoginSuccess) {
+              Navigator.pushNamed(context, "/Home");
+            }
+            return Scaffold(
+              extendBodyBehindAppBar: true,
+              body: SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            width: loginImageWidth,
+                            height: loginImageHeight,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage(AppLoginScreen.loginImage),
+                              fit: BoxFit.fill,
+                            )),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: logoTopMargin),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding:
+                                      EdgeInsets.only(left: logoLeftMargin),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: logoIconContainerWidth,
+                                        height: logoIconContainerHeight,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    AppLoginScreen.logo))),
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              left: logoLeftPadding)),
+                                      Container(
+                                        width: logoTextContainerWidth,
+                                        height: logoTextContainerHeight,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    AppLoginScreen.textLogo))),
+                                      ),
+                                    ],
                                   ),
-                                  Padding(
-                                      padding: EdgeInsets.only(
-                                          top: welcomeBackPaddingTop)),
-                                  Container(
-                                      padding: EdgeInsets.only(
-                                          left: welcomeBackPaddingLeft),
-                                      width: welcomeBackContainerWidth,
-                                      child: Text(
-                                        AppLoginScreen.welcomeBack,
-                                        style: TextStyle(
-                                            fontSize: welcomeBackFontSize,
-                                            fontFamily:
-                                                AppFonts.fontAppRegular),
-                                      )),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        Login_Body(
-                            Width: loginBodyWidthContainer,
-                            Height: loginBodyHeightContainer)
-                      ],
-                    ),
+                                ),
+                                Padding(
+                                    padding: EdgeInsets.only(
+                                        top: welcomeBackPaddingTop)),
+                                Container(
+                                    padding: EdgeInsets.only(
+                                        left: welcomeBackPaddingLeft),
+                                    width: welcomeBackContainerWidth,
+                                    child: Text(
+                                      AppLoginScreen.welcomeBack,
+                                      style: TextStyle(
+                                          fontSize: welcomeBackFontSize,
+                                          fontFamily: AppFonts.fontAppRegular),
+                                    )),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      Login_Body(
+                          Width: loginBodyWidthContainer,
+                          Height: loginBodyHeightContainer)
+                    ],
                   ),
                 ),
-              );
-            } else if (state is LoginSuccess) {
-              return Home_Screen();
-            } else {
-              return Text('Loading');
-            }
+              ),
+            );
           });
     } else {
       logoTopMargin = maxHeight * 0.078;

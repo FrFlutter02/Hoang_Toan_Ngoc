@@ -7,20 +7,20 @@ import '../../utils/validators.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   @override
-  final UserRepository userRepository = UserRepository();
-
   LoginBloc() : super(LoginInitial());
-  Future<bool> checkAccount(String email, String password) async {
-    String isAccount =
-        await userRepository.signInWithCredentials(email, password);
-
-    if (isAccount == "signed in")
-      return true;
-    else
-      return false;
-  }
 
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
+    final UserRepository userRepository = UserRepository();
+    Future<bool> checkAccount(String email, String password) async {
+      String isAccount =
+          await userRepository.signInWithCredentials(email, password);
+
+      if (isAccount == "signed in")
+        return true;
+      else
+        return false;
+    }
+
     switch (event.runtimeType) {
       case LoginFetched:
         yield LoginFailure();
