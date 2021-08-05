@@ -7,10 +7,9 @@ import '../reset_password_blocs/reset_password_state.dart';
 import '../../utils/validators.dart';
 
 class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
-  ResetPasswordBloc({required this.userRepository})
-      : super(ResetPasswordInitial());
+  ResetPasswordBloc() : super(ResetPasswordInitial());
 
-  final UserRepository userRepository;
+  final UserRepository userRepository = UserRepository();
   bool success = false;
 
   @override

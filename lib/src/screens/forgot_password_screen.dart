@@ -4,16 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../constants/constant_text.dart';
 import '../constants/constant_color.dart';
-import '../repositories/user_repository.dart';
 import '../blocs/reset_password_blocs/reset_password_bloc.dart';
 import '../blocs/reset_password_blocs/reset_password_event.dart';
 import '../blocs/reset_password_blocs/reset_password_state.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({Key? key, required this.userRepository})
-      : super(key: key);
+  const ForgotPasswordScreen({
+    Key? key,
+  }) : super(key: key);
 
-  final UserRepository userRepository;
+  // final UserRepository userRepository;
 
   @override
   _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
