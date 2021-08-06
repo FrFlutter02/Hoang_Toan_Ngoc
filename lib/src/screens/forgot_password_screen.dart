@@ -178,6 +178,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         mainAxisAlignment: mainAxisAlignment,
                         children: [
                           Image(
+                              key: Key('iconImage'),
                               image: AssetImage(AppIcons.logoIcon),
                               width: iconWidth,
                               height: iconHeight),
@@ -263,6 +264,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             ),
                             SizedBox(height: enterEmailFieldSpacing),
                             TextFormField(
+                              key: Key('enterEmailAddress'),
                               controller: emailController,
                               validator: (_) {
                                 if (isEmailValid) {

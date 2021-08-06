@@ -8,7 +8,7 @@ import '../../../lib/src/blocs/reset_password_blocs/reset_password_bloc.dart';
 import '../../../lib/src/screens/forgot_password_screen.dart';
 import '../../config/setup_firebase.dart';
 
-main() {
+main() async {
   setupCloudFirestoreMocks();
 
   setUpAll(() async {
@@ -28,6 +28,12 @@ main() {
       home: ForgotPasswordScreen(),
     ),
   );
+
+  testWidgets('Should render icon image with correct image', (tester) async {
+    await tester.pumpWidget(widget);
+    final iconImage = find.byKey(Key('iconImage'));
+    expect(iconImage, findsOneWidget);
+  });
 
   testWidgets('Should render icon name with correct name', (tester) async {
     await tester.pumpWidget(widget);
@@ -58,14 +64,14 @@ main() {
   testWidgets('Should render a email TextFormField with correct TextFormField',
       (tester) async {
     await tester.pumpWidget(widget);
-    final emailTextFormField = find.byType(TextFormField);
+    final emailTextFormField = find.byKey(Key('enterEmailAddress'));
     expect(emailTextFormField, findsOneWidget);
   });
 
   testWidgets('Should render a Send Button with correct Button',
       (tester) async {
     await tester.pumpWidget(widget);
-    final sendButton = find.byType(TextButton);
+    final sendButton = find.widgetWithText(TextButton, 'Send');
     expect(sendButton, findsOneWidget);
   });
 }
