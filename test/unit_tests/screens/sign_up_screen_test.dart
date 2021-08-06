@@ -8,11 +8,14 @@ import 'package:mobile_app/src/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:mobile_app/src/constants/constants_text.dart';
 import 'package:mobile_app/src/screens/sign_up_screen.dart';
 import 'package:mobile_app/src/blocs/sign_up_bloc/sign_up_state.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mobile_app/src/widgets/form_sign_up.dart';
+import 'package:mobile_app/src/widgets/logo.dart';
 import 'package:mockito/mockito.dart';
 import '../../config/setup_firebase.dart';
 
 class MockSignUpBloc extends Mock implements SignUpBloc {}
+
+class MockDevice extends Mock implements Device {}
 
 main() {
   setupCloudFirestoreMocks();
@@ -32,55 +35,43 @@ main() {
   SignUpBloc signUpBloc = SignUpBloc();
   group('Mobile testing', () {
     testWidgets('Should render with correct title for mobile', (tester) async {
-      // tester.binding.window.physicalSizeTestValue = Size(812, 375);
-      // tester.binding.window.devicePixelRatioTestValue = 1.0;
-      // addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
-
       await tester.pumpWidget(widget);
       await tester.pumpAndSettle();
       final titleFinder = find.text(SignUpText.titleMobileText);
       expect(titleFinder, findsOneWidget);
     });
-    testWidgets('Show render image background mobile', (tester) async {
-      tester.binding.window.physicalSizeTestValue = Size(1550, 500);
-      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
-      tester.binding.window.devicePixelRatioTestValue = 1.0;
+    testWidgets('Should render image background mobile', (tester) async {
       await tester.pumpWidget(widget);
       final imageBackgroundMobile = find.byKey(Key('imageMobile'));
       expect(imageBackgroundMobile, findsOneWidget);
     });
-
-    testWidgets('Should render a from sign up', (tester) async {
-      tester.binding.window.physicalSizeTestValue = Size(1500, 900);
-      tester.binding.window.devicePixelRatioTestValue = 1.0;
-      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
-
+    testWidgets('Should render a logo', (tester) async {
       await tester.pumpWidget(widget);
       await tester.pump();
-      final form = find.byType(Form);
+      final logo = find.byType(Logo);
+      expect(logo, findsOneWidget);
+    });
+    testWidgets('Should render a from sign up', (tester) async {
+      await tester.pumpWidget(widget);
+      await tester.pump();
+      final form = find.byType(FormSignUp);
       expect(form, findsOneWidget);
     });
   });
   group('Tablet testing', () {
     testWidgets('TabLet Should render with correct title for tabLet',
         (tester) async {
-      // tester.binding.window.physicalSizeTestValue = Size(1200, 1200);
-      // tester.binding.window.devicePixelRatioTestValue = 1.0;
-      // addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
-      tester.binding.window.physicalSizeTestValue = Size(1800, 2560);
+      tester.binding.window.physicalSizeTestValue = Size(1500, 1200);
+      tester.binding.window.devicePixelRatioTestValue = 1.0;
       addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
       await tester.pumpWidget(widget);
       await tester.pump();
       final titleFinder = find.text(SignUpText.titleText);
       expect(titleFinder, findsOneWidget);
     });
-    testWidgets('Show render image background tablet', (tester) async {
-      Device.screenHeight = 1500;
-      Device.screenWidth = 1200;
-      Device.size = Size(1500, 1200);
-      tester.binding.window.devicePixelRatioTestValue = 1.0;
+    testWidgets('Should render image background tablet', (tester) async {
       tester.binding.window.physicalSizeTestValue = Size(1500, 1200);
-
+      tester.binding.window.devicePixelRatioTestValue = 1.0;
       addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
 
       await tester.pumpWidget(widget);
@@ -103,19 +94,19 @@ main() {
     final indicatorFinder = find.byType(CircularProgressIndicator);
     expect(indicatorFinder, findsNothing);
   });
-  testWidgets(
-      'Should render red error text field with error message when signUp bloc state is [SignUpFailure]',
-      (tester) async {
-    final errorMessage = SignUpText.alreadyHaveAnAccountText;
-    final FirebaseAuthException exception =
-        FirebaseAuthException(code: 'email-already-in-use');
-    await tester.pumpWidget(widget);
-    signUpBloc.emit(SignUpAuthFailure(exception));
-    await tester.pump();
+  // testWidgets(
+  //     'Should render red error text field with error message when signUp bloc state is [SignUpFailure]',
+  //     (tester) async {
+  //   final errorMessage = SignUpText.alreadyHaveAnAccountText;
+  //   final FirebaseAuthException exception =
+  //       FirebaseAuthException(code: 'email-already-in-use');
+  //   await tester.pumpWidget(widget);
+  //   signUpBloc.emit(SignUpAuthFailure(exception));
+  //   await tester.pump();
 
-    final errorMessageFinder = find.text(errorMessage);
-    expect(errorMessageFinder, findsOneWidget);
-    expect(
-        (tester.widget(find.byType(Container)) as Container).color, Colors.red);
-  });
+  //   final errorMessageFinder = find.text(errorMessage);
+  //   expect(errorMessageFinder, findsOneWidget);
+  //   expect(
+  //       (tester.widget(find.byType(Container)) as Container).color, Colors.red);
+  // });
 }

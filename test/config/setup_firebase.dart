@@ -1,9 +1,10 @@
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mobile_app/src/repository/user_repository.dart';
 
 typedef Callback(MethodCall call);
-
+final UserRepository userRepository = UserRepository();
 setupCloudFirestoreMocks([Callback? customHandlers]) {
   TestWidgetsFlutterBinding.ensureInitialized();
 

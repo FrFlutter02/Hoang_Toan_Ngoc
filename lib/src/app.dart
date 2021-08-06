@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'screens/login_screen.dart';
 import 'blocs/authentication_bloc/authentication_bloc.dart';
 import 'blocs/authentication_bloc/authentication_event.dart';
 import 'screens/home_screen.dart';
@@ -13,6 +15,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     final UserRepository userRepository = UserRepository();
     return MultiBlocProvider(
       providers: [
@@ -27,7 +30,8 @@ class App extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => SignUpScreen(),
-          '/home': (context) => HomeScreen()
+          '/home': (context) => HomeScreen(),
+          '/loginScreen': (context) => LoginScreen()
         },
       ),
     );

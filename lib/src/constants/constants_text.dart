@@ -5,7 +5,6 @@ class SignUpText {
   static const String passwordText = "Password";
   static const String emailText = "Email";
   static const String fullNameText = "Full name";
-  static const String forgotPassWordText = "Forgot password?";
   static const String createAccountToContinueText =
       "Create account to continue.";
   static const String loginHereText = "Login Here";
