@@ -9,6 +9,7 @@ class AppLoginScreen {
   static const String newScratch = "New to Scratch?";
   static const String createAccount = "Create Account Here";
   static const String welcomeBack = "Welcome Back!";
+  static const String logoText = "scratch";
 
   static const String loginImage = "assets/images/Image.png";
   static const String logo = "assets/icons/logo.png";
@@ -17,6 +18,7 @@ class AppLoginScreen {
 
   static const int remindColor = 0xff606060;
   static const int hintTextColor = 0xffA8A8A8;
+  static const int logoTextColor = 0xff363837;
 }
 
 class AppForgotPasswordScreen {}

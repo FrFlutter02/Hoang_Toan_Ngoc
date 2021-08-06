@@ -43,26 +43,23 @@ void main() {
 
       expect(titleFinder, findsOneWidget);
     });
-    testWidgets('Show render image background mobile', (tester) async {
-      tester.binding.window.physicalSizeTestValue = Size(1024, 768);
-      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
+  });
+  testWidgets('Show render image background mobile', (tester) async {
+    tester.binding.window.physicalSizeTestValue = Size(1550, 500);
+    addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
+    tester.binding.window.devicePixelRatioTestValue = 1.0;
+    await tester.pumpWidget(loginScreenWidget);
+    final imageBackgroundMobile = find.byKey(Key('imageMobile'));
+    expect(imageBackgroundMobile, findsOneWidget);
+  });
+  testWidgets('Should render a from sign up', (tester) async {
+    tester.binding.window.physicalSizeTestValue = Size(1500, 900);
+    tester.binding.window.devicePixelRatioTestValue = 1.0;
+    addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
 
-      await tester.pumpWidget(loginScreenWidget);
-      tester.pumpAndSettle();
-      final titleFinder = find.descendant(
-          of: find.byType(Scaffold),
-          matching: find.text(AppLoginScreen.welcomeBack));
-      expect(titleFinder, findsOneWidget);
-    });
-    testWidgets('Should render a from sign up', (tester) async {
-      // tester.binding.window.physicalSizeTestValue = Size(1500, 900);
-      // tester.binding.window.devicePixelRatioTestValue = 1.0;
-      // addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
-
-      await tester.pumpWidget(loginScreenWidget);
-      await tester.pump();
-      final form = find.byType(Form);
-      expect(form, findsOneWidget);
-    });
+    await tester.pumpWidget(loginScreenWidget);
+    await tester.pump();
+    final form = find.byType(Form);
+    expect(form, findsOneWidget);
   });
 }

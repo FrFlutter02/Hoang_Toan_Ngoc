@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
+import '../widgets/logo.dart';
 import '../blocs/login_blocs/login_blocs.dart';
 import '../blocs/login_blocs/login_states.dart';
 import '../screens/home_screen.dart';
@@ -35,7 +36,7 @@ class LoginScreen extends StatelessWidget {
       loginImageHeight = maxHeight * 0.35;
       loginImageWidth = maxWidth;
       logoTopMargin = maxHeight * 0.074;
-      logoLeftMargin = 0.067 * maxWidth;
+      logoLeftMargin = 0.01 * maxWidth;
       logoLeftPadding = 10;
       logoIconContainerWidth = 18;
       logoIconContainerHeight = 26;
@@ -46,7 +47,7 @@ class LoginScreen extends StatelessWidget {
       welcomeBackContainerWidth = maxWidth * 0.811;
       welcomeBackFontSize = 24;
       loginBodyWidthContainer = maxWidth;
-      loginBodyHeightContainer = maxHeight;
+      loginBodyHeightContainer = maxHeight * 0.65;
       return BlocBuilder<LoginBloc, LoginState>(
           bloc: loginBloc,
           builder: (context, state) {
@@ -63,13 +64,21 @@ class LoginScreen extends StatelessWidget {
                       Stack(
                         children: [
                           Container(
-                            width: loginImageWidth,
                             height: loginImageHeight,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                              image: AssetImage(AppLoginScreen.loginImage),
-                              fit: BoxFit.fill,
-                            )),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(90.0)),
+                              child: Opacity(
+                                opacity: 0.7,
+                                child: Image.asset(
+                                  AppLoginScreen.backGroundLogin,
+                                  fit: BoxFit.cover,
+                                  alignment: FractionalOffset.topLeft,
+                                  width: double.infinity,
+                                  key: Key("imageMobile"),
+                                ),
+                              ),
+                            ),
                           ),
                           Container(
                             margin: EdgeInsets.only(top: logoTopMargin),
@@ -77,31 +86,8 @@ class LoginScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  padding:
-                                      EdgeInsets.only(left: logoLeftMargin),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: logoIconContainerWidth,
-                                        height: logoIconContainerHeight,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    AppLoginScreen.logo))),
-                                      ),
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                              left: logoLeftPadding)),
-                                      Container(
-                                        width: logoTextContainerWidth,
-                                        height: logoTextContainerHeight,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    AppLoginScreen.textLogo))),
-                                      ),
-                                    ],
-                                  ),
+                                  padding: EdgeInsets.only(left: 20),
+                                  child: Logo(),
                                 ),
                                 Padding(
                                     padding: EdgeInsets.only(
@@ -118,12 +104,22 @@ class LoginScreen extends StatelessWidget {
                                     )),
                               ],
                             ),
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                  padding:
+                                      EdgeInsets.only(top: loginImageHeight)),
+                              Container(
+                                color: Colors.white,
+                                child: Login_Body(
+                                    Width: loginBodyWidthContainer,
+                                    Height: loginBodyHeightContainer),
+                              ),
+                            ],
                           )
                         ],
                       ),
-                      Login_Body(
-                          Width: loginBodyWidthContainer,
-                          Height: loginBodyHeightContainer)
                     ],
                   ),
                 ),

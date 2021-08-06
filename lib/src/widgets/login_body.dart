@@ -18,8 +18,6 @@ class Login_Body extends StatefulWidget {
   LoginForm createState() => LoginForm(Width: Width, Height: Height);
 }
 
-enum ValidatorType { success, failure }
-
 class LoginForm extends State<Login_Body> {
   // This widget is the root of your application.
   final double Width;
@@ -28,12 +26,12 @@ class LoginForm extends State<Login_Body> {
   LoginForm({required this.Width, required this.Height});
   final emailController = TextEditingController();
   final passWordController = TextEditingController();
-  final UserRepository _userRepository = UserRepository();
+
   final Validators validators = Validators();
   String checkValidateEmail(String email) {
     bool isValidEmail = validators.isValidEmail(email);
     if (isValidEmail == true) {
-      return "valid";
+      return "";
     } else {
       return "Input correct email";
     }
@@ -42,15 +40,15 @@ class LoginForm extends State<Login_Body> {
   String checkValidatePassword(String Password) {
     if (Password.length < 8) {
       return "Minimum length is 8";
-    } else if (validators.isValidPassword(Password) == false) {
-      return "Incorrect Password";
     } else
-      return "valid";
+      return "";
   }
 
   @override
   Widget build(BuildContext context) {
     LoginBloc bloc = BlocProvider.of<LoginBloc>(context);
+    final _form = GlobalKey<FormState>();
+    final UserRepository _userRepository = UserRepository();
     return BlocBuilder<LoginBloc, LoginState>(
         bloc: bloc,
         builder: (context, state) {
@@ -71,9 +69,16 @@ class LoginForm extends State<Login_Body> {
           double newScratchPadding = 0.037 * Height;
           double newScratchFontSize = 14;
           double createAccountFontSize = 16;
+          void _saveForm() {
+            final isValid = _form.currentState!.validate();
+            if (!isValid) {
+              return;
+            }
+          }
+
           return Container(
-            color: Color(AppColorConstants.textAndBackGroundwhiteColor),
             child: Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -99,28 +104,28 @@ class LoginForm extends State<Login_Body> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          child: Text(
-                            AppLoginScreen.emailHint,
-                            style: TextStyle(
-                                fontFamily: AppFonts.fontAppRegular,
-                                fontSize: emailFontSize,
-                                color: Color(AppLoginScreen.hintTextColor)),
-                          ),
+                        Text(
+                          AppLoginScreen.emailHint,
+                          style: TextStyle(
+                              fontFamily: AppFonts.fontAppRegular,
+                              fontSize: emailFontSize,
+                              color: Color(AppLoginScreen.hintTextColor)),
                         ),
-                        Form(
-                          child: Container(
-                            child: TextFormField(
-                              decoration: InputDecoration(),
-                              controller: emailController,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return null;
-                                } else {
-                                  return checkValidateEmail(value);
-                                }
-                              },
-                            ),
+                        Container(
+                          child: TextFormField(
+                            decoration: InputDecoration(),
+                            controller: emailController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return null;
+                              } else if (checkValidateEmail(
+                                      emailController.text) ==
+                                  "") {
+                                return null;
+                              } else {
+                                return checkValidateEmail(emailController.text);
+                              }
+                            },
                           ),
                         ),
                       ],
@@ -172,6 +177,17 @@ class LoginForm extends State<Login_Body> {
                                   obscureText: true,
                                   decoration: InputDecoration(),
                                   controller: passWordController,
+                                  validator: (password) {
+                                    if (password!.isEmpty) {
+                                      return null;
+                                    } else if (checkValidatePassword(
+                                            password) ==
+                                        "") {
+                                      return null;
+                                    } else {
+                                      return checkValidatePassword(password);
+                                    }
+                                  },
                                 ),
                               ),
                             ]),
@@ -180,20 +196,16 @@ class LoginForm extends State<Login_Body> {
                       ],
                     ),
                   ),
-                  Container(
-                    height: loginHeightContainer,
-                    padding: EdgeInsets.symmetric(
-                        horizontal: loginButtonHorizontalPadding),
-                    child: TextButton(
-                      onPressed: () {
-                        if (checkValidateEmail(emailController.text) ==
-                                "valid" &&
-                            checkValidatePassword(passWordController.text) ==
-                                "valid")
-                          bloc.add(LoginWithCredentialsPressed(
-                              email: emailController.text,
-                              password: passWordController.text));
-                      },
+                  TextButton(
+                    onPressed: () {
+                      bloc.add(LoginWithCredentialsPressed(
+                          email: emailController.text,
+                          password: passWordController.text));
+                    },
+                    child: Container(
+                      height: 50,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: loginButtonHorizontalPadding),
                       child: Stack(
                         children: [
                           Container(
