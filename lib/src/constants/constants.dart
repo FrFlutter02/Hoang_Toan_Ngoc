@@ -1,0 +1,38 @@
+class AppOnBoardingScreen {}
+
+class AppLoginScreen {
+  static const String emailHint = "Email address";
+  static const String emailRemind = "Please login to continue.";
+  static const String passwordHint = "Password";
+  static const String forgotPassword = "Forgot password?";
+  static const String loginButton = "Login";
+  static const String newScratch = "New to Scratch?";
+  static const String createAccount = "Create Account Here";
+  static const String welcomeBack = "Welcome Back!";
+  static const String logoText = "scratch";
+
+  static const String loginImage = "assets/images/Image.png";
+  static const String logo = "assets/icons/logo.png";
+  static const String textLogo = "assets/icons/LogoText.png";
+  static const String backGroundLogin = "assets/images/background_image.jpeg";
+
+  static const int remindColor = 0xff606060;
+  static const int hintTextColor = 0xffA8A8A8;
+  static const int logoTextColor = 0xff363837;
+}
+
+class AppForgotPasswordScreen {}
+
+class AppSignUpScreen {}
+
+class AppConstants {}
+
+class AppImages {}
+
+class AppIcons {}
+
+class AppFonts {
+  static const String fontAppRegular = "Nunito-Regular";
+  static const String fontAppBold = "Nunito-Bold";
+  static const String fontAppSemiBold = "Nunito-SemiBold";
+}
