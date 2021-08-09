@@ -28,30 +28,43 @@ class LoginForm extends State<Login_Body> {
   final passWordController = TextEditingController();
 
   final Validators validators = Validators();
-  String checkValidateEmail(String email) {
-    bool isValidEmail = validators.isValidEmail(email);
-    if (isValidEmail == true) {
-      return "";
-    } else {
-      return "Input correct email";
-    }
-  }
-
-  String checkValidatePassword(String Password) {
-    if (Password.length < 8) {
-      return "Minimum length is 8";
-    } else
-      return "";
-  }
 
   @override
   Widget build(BuildContext context) {
     LoginBloc bloc = BlocProvider.of<LoginBloc>(context);
     final _form = GlobalKey<FormState>();
     final UserRepository _userRepository = UserRepository();
+    String checkValidEmail = "";
+    bool checkValidator = false;
+
+    String checkValidateEmail(String email) {
+      bool isValidEmail = validators.isValidEmail(email);
+      if (isValidEmail == true) {
+        return "valid";
+      } else {
+        return "Please input correct email";
+      }
+    }
+
+    String checkValidatePassword(String Password) {
+      if (Password.length < 8) {
+        return "Minimum length is 8";
+      }
+      return "valid";
+    }
+
     return BlocBuilder<LoginBloc, LoginState>(
         bloc: bloc,
         builder: (context, state) {
+          switch (state.runtimeType) {
+            case LoginFailure:
+              checkValidator = true;
+
+              break;
+            default:
+              checkValidator = false;
+          }
+
           double formPaddingTop = 0.025 * Height;
           double formPaddingHorizontal = 0.0667 * Width;
           double mailRemindFontSize = 14;
@@ -78,7 +91,7 @@ class LoginForm extends State<Login_Body> {
 
           return Container(
             child: Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
+              autovalidateMode: AutovalidateMode.always,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -115,16 +128,22 @@ class LoginForm extends State<Login_Body> {
                           child: TextFormField(
                             decoration: InputDecoration(),
                             controller: emailController,
+                            onChanged: (value) {
+                              checkValidator = false;
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return null;
-                              } else if (checkValidateEmail(
-                                      emailController.text) ==
-                                  "") {
+                              } else if (checkValidator == true) {
+                                if (checkValidateEmail(emailController.text) ==
+                                    "valid") {
+                                  return null;
+                                } else {
+                                  return checkValidateEmail(
+                                      emailController.text);
+                                }
+                              } else
                                 return null;
-                              } else {
-                                return checkValidateEmail(emailController.text);
-                              }
                             },
                           ),
                         ),
@@ -177,15 +196,20 @@ class LoginForm extends State<Login_Body> {
                                   obscureText: true,
                                   decoration: InputDecoration(),
                                   controller: passWordController,
-                                  validator: (password) {
-                                    if (password!.isEmpty) {
+                                  onChanged: (value) {
+                                    checkValidator = false;
+                                  },
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
                                       return null;
-                                    } else if (checkValidatePassword(
-                                            password) ==
-                                        "") {
-                                      return null;
-                                    } else {
-                                      return checkValidatePassword(password);
+                                    } else if (checkValidator == true) {
+                                      if (checkValidatePassword(
+                                              emailController.text) ==
+                                          "valid") {
+                                        return null;
+                                      } else
+                                        return checkValidatePassword(
+                                            emailController.text);
                                     }
                                   },
                                 ),

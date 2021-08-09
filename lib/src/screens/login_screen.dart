@@ -51,8 +51,11 @@ class LoginScreen extends StatelessWidget {
       return BlocBuilder<LoginBloc, LoginState>(
           bloc: loginBloc,
           builder: (context, state) {
-            if (state is LoginSuccess) {
-              Navigator.pushNamed(context, "/Home");
+            switch (state.runtimeType) {
+              case LoginSuccess:
+                Navigator.pushNamed(context, "/Home");
+                break;
+              default:
             }
             return Scaffold(
               extendBodyBehindAppBar: true,

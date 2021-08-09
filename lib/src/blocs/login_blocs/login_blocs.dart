@@ -23,7 +23,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     switch (event.runtimeType) {
       case LoginFetched:
-        yield LoginFailure();
+        yield LoginInitial();
         break;
       case LoginWithCredentialsPressed:
         if (event is LoginWithCredentialsPressed) {
