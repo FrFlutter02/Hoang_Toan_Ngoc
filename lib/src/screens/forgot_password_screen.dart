@@ -141,13 +141,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       Colors.white.withOpacity(0.3),
                       Colors.white.withOpacity(0),
                     ]).createShader(bounds),
-                child: Container(
+                child: Image(
                   width: widthScreen,
                   height: heightScreen,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(AppImages.backGroundImage),
-                          fit: BoxFit.cover)),
+                  fit: BoxFit.cover,
+                  image: AssetImage(AppImages.backGroundImage),
                 ),
               ))
             else if (Device.get().isPhone)
