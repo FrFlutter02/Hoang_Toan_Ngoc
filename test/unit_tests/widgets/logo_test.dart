@@ -12,9 +12,11 @@ main() {
     final appNameFinder = find.text(AppConstantsText.nameApp);
     expect(appNameFinder, findsOneWidget);
   });
-  testWidgets('Show render logo icon', (tester) async {
+  testWidgets('Should render a logo icon', (tester) async {
     await tester.pumpWidget(widget);
-    final logoIcon = find.byKey(Key('logoIcon'));
-    expect(logoIcon, findsOneWidget);
+    final _image =
+        find.descendant(of: find.byType(Padding), matching: find.byType(Image));
+    final _imageFinder = tester.widget<Image>(_image).image as AssetImage;
+    expect(_imageFinder.assetName, AppIcons.imageLogoPath);
   });
 }

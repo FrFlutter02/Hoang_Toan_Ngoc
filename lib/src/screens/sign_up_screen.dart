@@ -43,111 +43,101 @@ class SignUpScreen extends StatelessWidget {
     }
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
-          child: Stack(
-            children: [
-              if (Device.get().isPhone)
-                (Column(
-                  children: [
-                    Container(
-                      height: bannerFlex,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(90.0)),
-                        child: Opacity(
-                          opacity: 0.7,
-                          child: Image.asset(
-                            AppImages.imageSignUpPath,
-                            fit: BoxFit.cover,
-                            alignment: FractionalOffset.topLeft,
-                            width: double.infinity,
-                            key: Key("imageMobile"),
-                          ),
+        child: Stack(
+          children: [
+            if (Device.get().isPhone)
+              (Column(
+                children: [
+                  Container(
+                    height: bannerFlex,
+                    child: ClipRRect(
+                      borderRadius:
+                          BorderRadius.only(bottomRight: Radius.circular(90.0)),
+                      child: Opacity(
+                        opacity: 0.7,
+                        child: Image.asset(
+                          AppImages.imageSignUpPath,
+                          fit: BoxFit.cover,
+                          alignment: FractionalOffset.topLeft,
+                          width: double.infinity,
                         ),
                       ),
                     ),
-                  ],
-                ))
-              else
-                (ShaderMask(
-                  shaderCallback: (bounds) => LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.white.withOpacity(0.7),
-                        Colors.white.withOpacity(0.5),
-                        Colors.white.withOpacity(0.4),
-                        Colors.white.withOpacity(0.1),
-                        Colors.white.withOpacity(0),
-                      ]).createShader(bounds),
-                  child: Container(
-                    child: Image.asset(AppImages.imageSignUpPath,
-                        fit: BoxFit.cover, key: Key('imageTablet')),
                   ),
-                )),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: mainTabletPadding),
-                child: Column(
-                  children: [
-                    Container(
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: bannerLeftPadding),
-                        child: Column(
-                          crossAxisAlignment: bannerCrossAxisAlignment,
-                          children: [
-                            SizedBox(height: logoTopPadding),
-                            Logo(),
-                            SizedBox(height: titleTopPadding),
-                            Text(title,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline5!
-                                    .copyWith(
-                                        color:
-                                            Color(AppSignUpScreen.titleColor),
-                                        fontFamily: AppFonts.fontAppBold)),
-                            SizedBox(height: titleBottomPadding),
+                ],
+              ))
+            else
+              (ShaderMask(
+                shaderCallback: (bounds) => LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.white.withOpacity(0.7),
+                      Colors.white.withOpacity(0.5),
+                      Colors.white.withOpacity(0.4),
+                      Colors.white.withOpacity(0.1),
+                      Colors.white.withOpacity(0),
+                    ]).createShader(bounds),
+                child:
+                    Image.asset(AppImages.imageSignUpPath, fit: BoxFit.cover),
+              )),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: mainTabletPadding),
+              child: Column(
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: bannerLeftPadding),
+                    child: Column(
+                      crossAxisAlignment: bannerCrossAxisAlignment,
+                      children: [
+                        SizedBox(height: logoTopPadding),
+                        Logo(),
+                        SizedBox(height: titleTopPadding),
+                        Text(title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5!
+                                .copyWith(
+                                    color: Color(AppSignUpScreen.titleColor),
+                                    fontFamily: AppFonts.fontAppBold)),
+                        SizedBox(height: titleBottomPadding),
+                      ],
+                    ),
+                  ),
+                  if (Device.get().isPhone)
+                    (Container(
+                      height: formHeight,
+                      child: FormSignUp(),
+                    ))
+                  else
+                    (Container(
+                      height: formHeight,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 3,
+                              blurRadius: 3,
+                              offset: Offset(0, 3),
+                            ),
                           ],
                         ),
-                      ),
-                    ),
-                    if (Device.get().isPhone)
-                      (Container(
-                        height: formHeight,
-                        child: FormSignUp(),
-                      ))
-                    else
-                      (Container(
-                        height: formHeight,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                spreadRadius: 3,
-                                blurRadius: 3,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            child: FormSignUp(),
-                          ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          child: FormSignUp(),
                         ),
-                      )),
-                    SizedBox(
-                      height: formBottomPadding,
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+                      ),
+                    )),
+                  SizedBox(
+                    height: formBottomPadding,
+                  )
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );

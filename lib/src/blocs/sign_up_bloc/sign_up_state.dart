@@ -16,8 +16,43 @@ class SignUpLoading extends SignUpState {
   List<Object> get props => [];
 }
 
+class SignUpEmailValidatorsFailure extends SignUpState {
+  @override
+  List<Object> get props => [];
+}
+
+class SignUpEmailValidatorsSuccess extends SignUpState {
+  @override
+  List<Object> get props => [];
+}
+
+class SignUpPassWordValidatorsSuccess extends SignUpState {
+  @override
+  List<Object> get props => [];
+}
+
+class SignUpPassWordValidatorsFailure extends SignUpState {
+  @override
+  List<Object> get props => [];
+}
+
+class SignUpFullNameValidatorsSuccess extends SignUpState {
+  @override
+  List<Object> get props => [];
+}
+
+class SignUpFullNameValidatorsFailure extends SignUpState {
+  @override
+  List<Object> get props => [];
+}
+
+class SignUpFullNameAlreadyExist extends SignUpState {
+  @override
+  List<Object> get props => [];
+}
+
 class SignUpSuccess extends SignUpState {
-  final UserCredential user;
+  final User user;
   SignUpSuccess(this.user);
   @override
   List<Object> get props => [];

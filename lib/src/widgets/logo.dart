@@ -22,8 +22,7 @@ class Logo extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.only(right: 10),
-          child: Image.asset(AppIcons.imageLogoPath,
-              height: 26, width: 18, key: Key("logoIcon")),
+          child: Image.asset(AppIcons.imageLogoPath, height: 26, width: 18),
         ),
         Text(AppConstantsText.nameApp,
             style: Theme.of(context).textTheme.headline6!.copyWith(
